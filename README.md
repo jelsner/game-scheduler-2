@@ -1,15 +1,16 @@
 # DDC Fixed-Team Tournament Scheduler
 
-An R/Shiny app for scheduling fixed-team Double Disc Court tournaments in the United States.
+An R/Shiny app for scheduling fixed-team Double Disc Court tournaments, focused first on a 10-12 team U.S. Championship format.
 
-The app supports 4-20 teams:
+## US Championship Preset
 
-- 4-7 teams play a single round robin.
-- 8-10 teams play preliminary pools, then Group A and Group B, then placement matches.
-- 11 teams use a practical 4 + 4 + 3 preliminary pool split.
-- 12-20 teams use preliminary pools of 4 or 5 teams, then Group A and Group B, then placement matches. The 20-team format uses five pools of four, matching the larger fixed-team flow in Heikki's app.
+The active preset supports 10, 11, or 12 fixed teams:
 
-Teams are entered in seed order. Preliminary pools are assigned by snake seeding. In multi-pool events, the top two teams from each preliminary pool advance to Group A and the rest advance to Group B. Placement groups are created from the Group A standings followed by the Group B standings.
+- 10 teams: two 5-team pools, then a top-8 double-elimination bracket and a 9th-place match.
+- 11 teams: one 6-team pool and one 5-team pool, then a top-8 double-elimination bracket and a 9th-11th placement round robin.
+- 12 teams: two 6-team pools, then a top-8 double-elimination bracket and a 9th-12th placement bracket.
+
+Teams are entered one per line, preferably as `Player One / Player Two`. Manual seed order is supported. The app can also seed teams from the current international DDC player ranking API by summing the two players' ranking points.
 
 ## Running Locally
 
@@ -22,15 +23,27 @@ shiny::runApp()
 Required R packages:
 
 ```r
-install.packages(c("shiny", "dplyr", "tidyr", "purrr", "stringr", "DT"))
+install.packages(c("shiny", "dplyr", "tidyr", "purrr", "stringr", "DT", "jsonlite", "httr2"))
 ```
+
+## Ranking Integration
+
+Ranking fetches use the doubledisccourt.com endpoint behind:
+
+<https://doubledisccourt.com/results/rankings.html>
+
+The repo also includes a hook for sourcing the local esc-stats scraper:
+
+```r
+source_local_ddc_scraper()
+```
+
+That scraper is useful for event-results scraping. The live seeding button uses the rankings API directly.
 
 ## Credit And License
 
 This project is inspired by Heikki Wilenius's GPL DDC tournament manager:
 
 <https://github.com/wilenius/ddc>
-
-The tournament flow implemented here follows the same broad idea used in that project for larger fixed-team tournaments: preliminary pool play, A/B group play, and final placement matches. This is a new R/Shiny implementation rather than a direct Python port.
 
 This project is released under GPL-3. See `LICENSE`.
