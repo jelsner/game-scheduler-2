@@ -32,14 +32,6 @@ Ranking fetches use the doubledisccourt.com endpoint behind:
 
 <https://doubledisccourt.com/results/rankings.html>
 
-The repo also includes a hook for sourcing the local esc-stats scraper:
-
-```r
-source_local_ddc_scraper()
-```
-
-That scraper is useful for event-results scraping. The live seeding button uses the rankings API directly.
-
 ## Credit And License
 
 This project is inspired by Heikki Wilenius's GPL DDC tournament manager:

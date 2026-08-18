@@ -323,7 +323,7 @@ server <- function(input, output, session) {
         class = "credit",
         "Initial seeding can use the current player ranking API behind ",
         tags$a("doubledisccourt.com/results/rankings.html", href = "https://doubledisccourt.com/results/rankings.html", target = "_blank"),
-        ". The local esc-stats scraper can still be sourced for event-result scraping when needed."
+        "."
       )
     )
   })

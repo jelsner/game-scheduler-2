@@ -1,11 +1,5 @@
 ddc_rankings_api_url <- "https://doubledisccourt.com/data/ddc.php"
 
-source_local_ddc_scraper <- function(path = "/Users/jameselsner/Desktop/Projects/esc-stats/scripts/ddc_scraper.R") {
-  if (!file.exists(path)) return(FALSE)
-  source(path, local = globalenv())
-  TRUE
-}
-
 read_ddc_api_json <- function(params) {
   if (!requireNamespace("jsonlite", quietly = TRUE)) {
     stop("Install jsonlite to fetch DDC rankings.", call. = FALSE)
