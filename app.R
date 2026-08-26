@@ -109,6 +109,54 @@ format_summary_text <- function(n) {
   )
 }
 
+selected_player_ids <- function(input, n, prefix) {
+  map_chr(seq_len(n), function(i) {
+    value <- input[[paste0(prefix, "_", i)]]
+    if (is.null(value) || identical(value, "")) NA_character_ else as.character(value)
+  })
+}
+
+default_teams <- function(n) {
+  tibble(
+    team_id = seq_len(n),
+    seed = seq_len(n),
+    team = sprintf("Team %02d", seq_len(n)),
+    player1 = "",
+    player2 = "",
+    player1_rank = NA_integer_,
+    player2_rank = NA_integer_,
+    team_points = NA_real_,
+    missing_ranking = TRUE
+  )
+}
+
+team_builder_ui <- function(n) {
+  tagList(
+    lapply(seq_len(n), function(i) {
+      tags$div(
+        class = "team-entry-row",
+        tags$div(class = "team-entry-label", paste("Team", i)),
+        selectizeInput(
+          paste0("player1_", i),
+          "Player 1",
+          choices = NULL,
+          selected = NULL,
+          width = "100%",
+          options = list(placeholder = "Search player")
+        ),
+        selectizeInput(
+          paste0("player2_", i),
+          "Player 2",
+          choices = NULL,
+          selected = NULL,
+          width = "100%",
+          options = list(placeholder = "Search player")
+        )
+      )
+    })
+  )
+}
+
 ui <- fluidPage(
   tags$head(
     tags$style(HTML("
@@ -127,6 +175,10 @@ ui <- fluidPage(
       .score-row { display: grid; grid-template-columns: minmax(240px, 1fr) auto auto; gap: 12px; align-items: end; padding: 10px 0; border-bottom: 1px solid #eef2f5; }
       .match-label p { margin: 4px 0 0; }
       .match-label span { color: #697586; margin-left: 8px; font-size: 13px; }
+      .team-entry-row { border-top: 1px solid #e4e9ef; padding-top: 12px; margin-top: 12px; }
+      .team-entry-label { font-weight: 700; color: #263342; margin-bottom: 2px; }
+      .team-entry-row .form-group { margin-bottom: 8px; }
+      .ranking-status { color: #56616f; font-size: 13px; margin: 8px 0 12px; }
       .credit { color: #697586; font-size: 13px; }
       @media (max-width: 760px) {
         .score-row { grid-template-columns: 1fr; align-items: stretch; }
@@ -142,26 +194,21 @@ ui <- fluidPage(
     ),
     sidebarLayout(
       sidebarPanel(
-        width = 3,
+        width = 4,
         numericInput("team_count", "Teams", value = 12, min = 10, max = 12, step = 1),
-        textAreaInput(
-          "team_names",
-          "Teams in seed order",
-          value = paste(sprintf("Player %02da / Player %02db", 1:12, 1:12), collapse = "\n"),
-          rows = 14,
-          resize = "vertical"
-        ),
-        actionButton("apply_teams", "Update teams", class = "btn-primary"),
-        actionButton("rank_from_ddc", "Seed from DDC rankings"),
-        br(), br(),
         numericInput("ranking_year", "Ranking year", value = as.integer(format(Sys.Date(), "%Y")), min = 2018, max = as.integer(format(Sys.Date(), "%Y")), step = 1),
         selectInput("ranking_division", "Ranking division", choices = c("Open" = "O", "Women" = "W", "Mixed" = "X"), selected = "O"),
+        actionButton("load_rankings", "Load rankings", class = "btn-default"),
+        div(class = "ranking-status", textOutput("ranking_status", inline = TRUE)),
+        uiOutput("team_builder"),
+        actionButton("apply_teams", "Build schedule", class = "btn-primary"),
+        br(),
         br(),
         downloadButton("download_schedule", "Download schedule"),
         downloadButton("download_standings", "Download standings")
       ),
       mainPanel(
-        width = 9,
+        width = 8,
         uiOutput("format_summary"),
         tabsetPanel(
           tabPanel("Teams", div(class = "panel", DTOutput("teams_table"))),
@@ -176,37 +223,76 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  observeEvent(input$team_count, {
-    current <- str_split(input$team_names %||% "", "\n")[[1]] %>% str_squish() %>% discard(~ .x == "")
-    n <- input$team_count
-    if (length(current) < n) {
-      current <- c(current, sprintf("Player %02da / Player %02db", (length(current) + 1):n, (length(current) + 1):n))
-    }
-    current <- current[seq_len(n)]
-    updateTextAreaInput(session, "team_names", value = paste(current, collapse = "\n"))
-  })
+  ranking_data <- reactiveVal(NULL)
+  ranking_error <- reactiveVal(NULL)
+  teams_value <- reactiveVal(default_teams(12))
 
-  ranked_team_text <- reactiveVal(NULL)
-
-  observeEvent(input$rank_from_ddc, {
-    lines <- str_split(input$team_names %||% "", "\n")[[1]] %>% str_squish() %>% discard(~ .x == "")
+  load_rankings <- function() {
+    ranking_error(NULL)
     tryCatch({
-      ranked <- rank_team_lines_from_ddc_rankings(lines, year = input$ranking_year, division = input$ranking_division)
-      ranked_team_text(paste(ranked$team, collapse = "\n"))
-      updateTextAreaInput(session, "team_names", value = ranked_team_text())
-      showNotification("Teams reseeded from current DDC ranking points.", type = "message")
+      rankings <- fetch_latest_ddc_player_rankings(
+        start_year = input$ranking_year,
+        division = input$ranking_division
+      )
+      ranking_data(rankings)
+      showNotification("DDC rankings loaded.", type = "message")
     }, error = function(error) {
+      ranking_data(NULL)
+      ranking_error(conditionMessage(error))
       showNotification(conditionMessage(error), type = "error", duration = 8)
     })
+  }
+
+  observeEvent(input$load_rankings, load_rankings(), ignoreInit = FALSE)
+
+  output$ranking_status <- renderText({
+    rankings <- ranking_data()
+    if (!is.null(rankings)) {
+      return(paste0(
+        nrow(rankings), " players loaded from ",
+        unique(rankings$ranking_year), " ",
+        unique(rankings$division), " rankings."
+      ))
+    }
+    if (!is.null(ranking_error())) return(paste("Rankings not loaded:", ranking_error()))
+    "Rankings not loaded yet."
   })
 
-  teams <- eventReactive(input$apply_teams, {
-    names <- str_split(input$team_names %||% "", "\n")[[1]] %>% str_squish() %>% discard(~ .x == "")
-    validate(need(length(names) == input$team_count, "Enter one team per line, matching the team count."))
-    validate(need(length(unique(names)) == length(names), "Team names must be unique."))
-    parse_team_roster(names) %>%
-      mutate(seed = row_number(), .after = team_id)
-  }, ignoreNULL = FALSE)
+  output$team_builder <- renderUI({
+    team_builder_ui(input$team_count)
+  })
+
+  observe({
+    rankings <- ranking_data()
+    choices <- if (is.null(rankings)) character(0) else c("Choose player" = "", ranking_choice_labels(rankings))
+    for (i in seq_len(input$team_count)) {
+      updateSelectizeInput(session, paste0("player1_", i), choices = choices, selected = "", server = TRUE)
+      updateSelectizeInput(session, paste0("player2_", i), choices = choices, selected = "", server = TRUE)
+    }
+  })
+
+  observeEvent(input$team_count, {
+    if (nrow(teams_value()) != input$team_count) {
+      teams_value(default_teams(input$team_count))
+    }
+  })
+
+  observeEvent(input$apply_teams, {
+    rankings <- ranking_data()
+    validate(need(!is.null(rankings), "Load DDC rankings before building the schedule."))
+
+    player1_ids <- selected_player_ids(input, input$team_count, "player1")
+    player2_ids <- selected_player_ids(input, input$team_count, "player2")
+    selected_ids <- c(player1_ids, player2_ids)
+
+    validate(need(!any(is.na(selected_ids)), "Choose two ranked players for every team."))
+    validate(need(length(unique(selected_ids)) == length(selected_ids), "Each player can only appear once."))
+
+    teams_value(seed_teams_from_player_ids(player1_ids, player2_ids, rankings))
+    showNotification("Schedule rebuilt from selected teams and ranking points.", type = "message")
+  })
+
+  teams <- reactive(teams_value())
 
   preset <- reactive(make_us_championship_preset(teams()))
   pool_stage <- reactive(preset()$pool_stage)
@@ -241,7 +327,7 @@ server <- function(input, output, session) {
     offset <- max(pool_stage()$games$game_id) + nrow(bracket_template())
     make_bottom_placement(teams(), order, game_offset = offset)
   })
-
+9
   placement_games <- reactive({
     games <- placement_template()
     if (is.null(games)) return(NULL)
@@ -273,7 +359,18 @@ server <- function(input, output, session) {
   output$teams_table <- renderDT({
     pool_tbl <- bind_rows(pool_stage()$pools)
     datatable(
-      pool_tbl %>% select(Seed = seed, Team = team, Player1 = player1, Player2 = player2, Pool = pool, `Pool seed` = pool_position),
+      pool_tbl %>%
+        select(
+          Seed = seed,
+          Team = team,
+          `Team points` = team_points,
+          Player1 = player1,
+          `P1 rank` = player1_rank,
+          Player2 = player2,
+          `P2 rank` = player2_rank,
+          Pool = pool,
+          `Pool seed` = pool_position
+        ),
       rownames = FALSE,
       options = list(pageLength = 12)
     )

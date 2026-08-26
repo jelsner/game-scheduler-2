@@ -48,6 +48,50 @@ fetch_ddc_player_rankings <- function(year = as.integer(format(Sys.Date(), "%Y")
     dplyr::arrange(.data$player_rank)
 }
 
+ranking_choice_labels <- function(rankings) {
+  stats::setNames(
+    rankings$player_id,
+    paste0(
+      rankings$player,
+      " (#", rankings$player_rank,
+      ", ", format(round(rankings$ranking_points, 2), nsmall = 2), " pts)"
+    )
+  )
+}
+
+seed_teams_from_player_ids <- function(player1_ids, player2_ids, rankings) {
+  lookup <- rankings %>%
+    dplyr::mutate(player_id = as.character(.data$player_id)) %>%
+    dplyr::select("player_id", "player", "player_rank", "ranking_points")
+
+  team_pairs <- tibble::tibble(
+    player1_id = as.character(player1_ids),
+    player2_id = as.character(player2_ids)
+  ) %>%
+    dplyr::mutate(team_id = dplyr::row_number(), .before = 1) %>%
+    dplyr::left_join(lookup, by = c("player1_id" = "player_id")) %>%
+    dplyr::rename(player1 = "player", player1_rank = "player_rank", player1_points = "ranking_points") %>%
+    dplyr::left_join(lookup, by = c("player2_id" = "player_id")) %>%
+    dplyr::rename(player2 = "player", player2_rank = "player_rank", player2_points = "ranking_points")
+
+  team_pairs %>%
+    dplyr::mutate(
+      player1_points = tidyr::replace_na(.data$player1_points, 0),
+      player2_points = tidyr::replace_na(.data$player2_points, 0),
+      player1 = tidyr::replace_na(.data$player1, ""),
+      player2 = tidyr::replace_na(.data$player2, ""),
+      team = stringr::str_squish(paste(.data$player1, "/", .data$player2)),
+      team_points = .data$player1_points + .data$player2_points,
+      missing_ranking = is.na(.data$player1_rank) | is.na(.data$player2_rank)
+    ) %>%
+    dplyr::arrange(dplyr::desc(.data$team_points), .data$missing_ranking, .data$team) %>%
+    dplyr::mutate(seed = dplyr::row_number(), team_id = dplyr::row_number()) %>%
+    dplyr::select(
+      "team_id", "seed", "team", "player1", "player2",
+      "player1_rank", "player2_rank", "team_points", "missing_ranking"
+    )
+}
+
 fetch_latest_ddc_player_rankings <- function(
   start_year = as.integer(format(Sys.Date(), "%Y")),
   earliest_year = 2018,
