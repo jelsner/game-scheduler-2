@@ -76,6 +76,15 @@ clears that match's old result and affected descendants. Scores are never
 silently assigned to different teams. A correction that leaves the participants
 unchanged preserves valid later results. Clearing a result requires confirmation.
 
+## Outdoor display
+
+**Sunlight mode** starts enabled, with white backgrounds, black text, strong
+borders, and larger score-entry controls. Use the display controls at the top
+to switch the theme or choose **Standard** (16 px), **Large** (19 px, the
+default), or **Extra large** (22 px) text. These preferences are remembered
+in the same browser and do not change tournament scores or printable PDFs.
+For more room while scoring, open the app in your browser from RStudio.
+
 ## Saving and backups
 
 Every saved change is atomically written to `data/tournament-state.json`.

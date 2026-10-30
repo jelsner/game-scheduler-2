@@ -18,8 +18,7 @@
       try {
         localStorage.setItem(preferenceKey, JSON.stringify({sunlight: sunlight.checked, textSize: size}));
       } catch (_) { /* Scoring must work even when preferences cannot be saved. */ }
-      // Recalculate scrollable tables when the font changes, including after a
-      // hidden tab is shown. Only presentation is affected by these preferences.
+      // Recalculate visible scrollable tables when the font changes.
       if (window.jQuery && window.jQuery.fn.dataTable) {
         window.jQuery.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
       }

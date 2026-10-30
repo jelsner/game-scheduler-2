@@ -29,7 +29,7 @@ ui <- fluidPage(
     .shiny-output-error-validation { color:#a13e23; }
     @media(max-width:760px){ .hero h1 {font-size:24px;} .well {margin-bottom:12px;} }
   ")),
-    tags$link(rel = "stylesheet", href = "readability.css"),
+    tags$link(rel = "stylesheet", href = "readability.css?v=2"),
     tags$script(src = "readability.js")
   ),
   div(class = "hero", h1("US DDC Championship 2026"),

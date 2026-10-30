@@ -15,7 +15,7 @@ body {
 }
 .display-controls .form-group { margin: 0; }
 .display-controls .checkbox { margin: 0; }
-.display-controls input[type="checkbox"] { width: 20px; height: 20px; margin-top: 4px; }
+.display-controls .checkbox input[type="checkbox"] { width: 20px; height: 20px; margin-top: 4px; margin-left: -30px; }
 .display-controls .checkbox label { padding-left: 30px; font-weight: 700; }
 .display-controls .display-hint { font-size: .85em; }
 label { font-weight: 700; }
