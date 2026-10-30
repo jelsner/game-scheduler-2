@@ -1,444 +1,236 @@
-# DDC fixed-team tournament scheduler
-# Shiny app for the 10-12 team US Championship preset.
-
+# 2026 US DDC Championship: offline-ready, fixed 13-team tournament desk.
 library(shiny)
 library(dplyr)
-library(tidyr)
-library(purrr)
-library(stringr)
 library(DT)
-
-`%||%` <- function(x, y) {
-  if (is.null(x)) y else x
-}
-
 source("R/us_championship_engine.R")
-source("R/ddc_rankings.R")
+source("R/championship_13.R")
+source("R/championship_pdfs.R")
 
-short_team_name <- function(name) {
-  name <- str_squish(name %||% "")
-  if_else(str_length(name) > 28, paste0(str_sub(name, 1, 25), "..."), name)
-}
-
-score_input_id <- function(prefix, gid, version) paste(prefix, version, gid, sep = "_")
-
-scores_for_games <- function(games, input, version) {
-  if (is.null(games) || nrow(games) == 0) {
-    return(tibble(game_id = integer(), scoreA = numeric(), scoreB = numeric()))
-  }
-  pull_score <- function(prefix, gid) {
-    value <- input[[score_input_id(prefix, gid, version)]]
-    if (is.null(value)) NA_real_ else as.numeric(value)
-  }
-  tibble(
-    game_id = games$game_id,
-    scoreA = map_dbl(games$game_id, ~ pull_score("A", .x)),
-    scoreB = map_dbl(games$game_id, ~ pull_score("B", .x))
-  )
-}
-
-display_match <- function(teamA, teamB, sourceA, sourceB) {
-  left <- if_else(is.na(teamA) | teamA == "", sourceA, teamA)
-  right <- if_else(is.na(teamB) | teamB == "", sourceB, teamB)
-  paste(short_team_name(left), "vs", short_team_name(right))
-}
-
-display_schedule <- function(games, scores = NULL) {
-  out <- games
-  if (!is.null(scores)) out <- out %>% left_join(scores, by = "game_id")
-  out %>%
-    transmute(
-      Game = game_id,
-      Key = game_key,
-      Day = day,
-      Stage = stage,
-      Group = group,
-      Round = round,
-      Court = court,
-      Match = display_match(teamA, teamB, sourceA, sourceB),
-      Label = label,
-      Score = if ("scoreA" %in% names(.)) if_else(is.na(scoreA) | is.na(scoreB), "", paste(scoreA, "-", scoreB)) else ""
-    )
-}
-
-score_card <- function(games, version) {
-  ready_games <- games %>% filter(!is.na(teamA_id), !is.na(teamB_id))
-  if (nrow(ready_games) == 0) return(NULL)
-  tagList(
-    lapply(split(ready_games, ready_games$stage), function(stage_games) {
-      tags$section(
-        class = "score-section",
-        tags$h3(unique(stage_games$stage)),
-        lapply(split(stage_games, stage_games$round), function(round_games) {
-          tags$div(
-            class = "round-block",
-            tags$h4(paste("Round", unique(round_games$round))),
-            lapply(seq_len(nrow(round_games)), function(i) {
-              game <- round_games[i, ]
-              tags$div(
-                class = "score-row",
-                tags$div(
-                  class = "match-label",
-                  tags$strong(game$label),
-                  tags$span(paste0("Court ", game$court)),
-                  tags$p(paste(game$teamA, "vs", game$teamB))
-                ),
-                numericInput(score_input_id("A", game$game_id, version), game$teamA, value = NA, min = 0, step = 1, width = "120px"),
-                numericInput(score_input_id("B", game$game_id, version), game$teamB, value = NA, min = 0, step = 1, width = "120px")
-              )
-            })
-          )
-        })
-      )
-    })
-  )
-}
-
-format_summary_text <- function(n) {
-  sizes <- us_championship_pool_sizes(n)
-  placement <- switch(
-    as.character(n),
-    `10` = "Seeds 9-10 play one placement match.",
-    `11` = "Seeds 9-11 play a placement round robin.",
-    `12` = "Seeds 9-12 play placement semifinals, then 9th and 11th place matches."
-  )
-  paste0(
-    "Day 1: ", paste(sizes, collapse = " + "), " pools, full round robin. ",
-    "Day 2: top 8 advance to a double-elimination championship bracket. ",
-    placement
-  )
-}
-
-selected_player_ids <- function(input, n, prefix) {
-  map_chr(seq_len(n), function(i) {
-    value <- input[[paste0(prefix, "_", i)]]
-    if (is.null(value) || identical(value, "")) NA_character_ else as.character(value)
-  })
-}
-
-default_teams <- function(n) {
-  tibble(
-    team_id = seq_len(n),
-    seed = seq_len(n),
-    team = sprintf("Team %02d", seq_len(n)),
-    player1 = "",
-    player2 = "",
-    player1_rank = NA_integer_,
-    player2_rank = NA_integer_,
-    team_points = NA_real_,
-    missing_ranking = TRUE
-  )
-}
-
-team_builder_ui <- function(n) {
-  tagList(
-    lapply(seq_len(n), function(i) {
-      tags$div(
-        class = "team-entry-row",
-        tags$div(class = "team-entry-label", paste("Team", i)),
-        selectizeInput(
-          paste0("player1_", i),
-          "Player 1",
-          choices = NULL,
-          selected = NULL,
-          width = "100%",
-          options = list(placeholder = "Search player")
-        ),
-        selectizeInput(
-          paste0("player2_", i),
-          "Player 2",
-          choices = NULL,
-          selected = NULL,
-          width = "100%",
-          options = list(placeholder = "Search player")
-        )
-      )
-    })
-  )
-}
+state_file_13 <- Sys.getenv("DDC_STATE_FILE", "data/tournament-state.json")
+initial_13 <- if (file.exists(state_file_13)) read_snapshot_13(state_file_13) else empty_tournament()
+# Shared by sessions in this R process, not private to each browser tab.
+tournament_store_13 <- reactiveVal(initial_13)
 
 ui <- fluidPage(
-  tags$head(
-    tags$style(HTML("
-      body { background: #f6f7f9; color: #17202a; }
-      .app-shell { max-width: 1280px; margin: 0 auto; }
-      .topbar { padding: 22px 0 10px; border-bottom: 1px solid #d7dde4; margin-bottom: 18px; }
-      .topbar h1 { font-size: 28px; margin: 0 0 4px; font-weight: 700; }
-      .topbar p { color: #56616f; margin: 0; }
-      .panel { background: #fff; border: 1px solid #dce2e8; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
-      .panel h2, .panel h3 { margin-top: 0; }
-      .format-note { background: #edf7f3; border-left: 4px solid #16805b; padding: 10px 12px; margin-bottom: 12px; }
-      .warn-note { background: #fff7e6; border-left: 4px solid #c77900; padding: 10px 12px; margin-bottom: 12px; }
-      .score-section h3 { font-size: 20px; margin-top: 8px; }
-      .round-block { border-top: 1px solid #e6ebf0; padding-top: 12px; margin-top: 12px; }
-      .round-block h4 { font-size: 16px; color: #394655; }
-      .score-row { display: grid; grid-template-columns: minmax(240px, 1fr) auto auto; gap: 12px; align-items: end; padding: 10px 0; border-bottom: 1px solid #eef2f5; }
-      .match-label p { margin: 4px 0 0; }
-      .match-label span { color: #697586; margin-left: 8px; font-size: 13px; }
-      .team-entry-row { border-top: 1px solid #e4e9ef; padding-top: 12px; margin-top: 12px; }
-      .team-entry-label { font-weight: 700; color: #263342; margin-bottom: 2px; }
-      .team-entry-row .form-group { margin-bottom: 8px; }
-      .ranking-status { color: #56616f; font-size: 13px; margin: 8px 0 12px; }
-      .credit { color: #697586; font-size: 13px; }
-      @media (max-width: 760px) {
-        .score-row { grid-template-columns: 1fr; align-items: stretch; }
-      }
-    "))
-  ),
-  div(
-    class = "app-shell",
-    div(
-      class = "topbar",
-      h1("DDC (Escape!! Frisbee) Fixed-Team Tournament Scheduler"),
-      p("US Championship preset: Day 1 pool play, Day 2 top-8 double elimination and placement matches.")
-    ),
-    sidebarLayout(
-      sidebarPanel(
-        width = 4,
-        numericInput("team_count", "Teams", value = 12, min = 10, max = 12, step = 1),
-        numericInput("ranking_year", "Ranking year", value = as.integer(format(Sys.Date(), "%Y")), min = 2018, max = as.integer(format(Sys.Date(), "%Y")), step = 1),
-        selectInput("ranking_division", "Ranking division", choices = c("Open" = "O", "Women" = "W", "Mixed" = "X"), selected = "O"),
-        actionButton("load_rankings", "Load rankings", class = "btn-default"),
-        div(class = "ranking-status", textOutput("ranking_status", inline = TRUE)),
-        uiOutput("team_builder"),
-        actionButton("apply_teams", "Build schedule", class = "btn-primary"),
-        br(),
-        br(),
-        downloadButton("download_schedule", "Download schedule"),
-        downloadButton("download_standings", "Download standings")
-      ),
-      mainPanel(
-        width = 8,
-        uiOutput("format_summary"),
-        tabsetPanel(
-          tabPanel("Teams", div(class = "panel", DTOutput("teams_table"))),
-          tabPanel("Schedule", div(class = "panel", DTOutput("schedule_table"))),
-          tabPanel("Scores", div(class = "panel", uiOutput("score_inputs"))),
-          tabPanel("Standings", div(class = "panel", uiOutput("standings_ui"))),
-          tabPanel("Credit", div(class = "panel", uiOutput("credit_ui")))
-        )
+  tags$head(tags$style(HTML("
+    body { background:#f3f6f8; color:#192c3c; }
+    .container-fluid { max-width:1440px; margin:auto; }
+    .hero { padding:22px 0 12px; } .hero h1 { margin:0 0 5px; font-size:29px; font-weight:700; }
+    .hero p,.muted { color:#526776; } .well,.panel-card { background:white; border:1px solid #dbe3e8; border-radius:9px; padding:18px; }
+    .panel-card { margin:14px 0; } .panel-card h3 { margin-top:0; font-size:20px; }
+    .format-note { background:#e9f4ef; border-left:4px solid #24785a; padding:12px 16px; margin-bottom:16px; }
+    .progress-note { font-size:17px; font-weight:600; margin:12px 0; }
+    .score-pair { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .score-game { border-top:1px solid #dbe3e8; padding-top:8px; }
+    .btn { margin-bottom:6px; } .downloads .btn { margin-right:8px; }
+    .saved-note { font-size:12px; color:#526776; margin-top:10px; }
+    .tab-content { padding-top:8px; }
+    table.dataTable td, table.dataTable th { white-space:nowrap; } .help-block { color:#526776; }
+    .shiny-output-error-validation { color:#a13e23; }
+    @media(max-width:760px){ .hero h1 {font-size:24px;} .well {margin-bottom:12px;} }
+  "))),
+  div(class = "hero", h1("US DDC Championship 2026"),
+      p("November 7-8 | Tallahassee | 13 teams | Six courts")),
+  div(class = "format-note", strong("Tournament format: "),
+      "Three pools (5 + 4 + 4), then all 13 teams enter double elimination. Each pool retains its original seed slots; teams earn those slots by pool finish. Placement games decide 5th-12th."),
+  sidebarLayout(
+    sidebarPanel(width = 4,
+      h3("Score a match"),
+      selectInput("score_stage", "Stage", c("Pool play", "Double elimination", "Placement")),
+      selectInput("match_key", "Ready or completed match", choices = character()),
+      uiOutput("score_editor"),
+      actionButton("save_score", "Save result", class = "btn-primary"),
+      actionButton("clear_score", "Clear result"),
+      textOutput("save_status"),
+      div(class = "saved-note", "Results are saved on this server after each change. Download a backup regularly, especially when using shinyapps.io."),
+      hr(), h4("Backup and restore"),
+      downloadButton("backup", "Download tournament backup"),
+      fileInput("restore_file", "Restore a tournament backup", accept = ".json"),
+      actionButton("review_restore", "Review restore"),
+      p(class = "muted", "This app is a tournament scoring desk. Use one scoring operator and one server process.")),
+    mainPanel(width = 8,
+      textOutput("progress", container = function(...) div(class = "progress-note", ...)),
+      tabsetPanel(id = "main_tab",
+        tabPanel("Pools", value = "pools", uiOutput("pools_view")),
+        tabPanel("Reseeding tally", div(class = "panel-card",
+          h3("Earned bracket seeds"),
+          p("Pool finish determines which of that pool's original overall seed slots a team earns. Other pools' records are never compared."),
+          DTOutput("tally"), uiOutput("ties_view"))),
+        tabPanel("Bracket", div(class = "panel-card", h3("Double elimination"),
+          p("Seeds 1-3 receive opening byes. G24 is best of three to 15; G25 is one game to 21, only if the lower-bracket finalist wins G24. All games win by two."),
+          p("A wave starts games together on separate courts. Start the next wave after the previous one finishes, allowing the agreed rest period."),
+          DTOutput("bracket"))),
+        tabPanel("Placement", div(class = "panel-card", h3("Final position games"),
+          p("Losers of G14-G17 enter the 9th-12th mini bracket, ordered by earned bracket seed: M1 vs M4 and M2 vs M3. Winners play P3 for 9th/10th; losers play P4 for 11th/12th. P5 decides 7th/8th and P6 decides 5th/6th. The loser of G13 finishes 13th."),
+          DTOutput("placements"))),
+        tabPanel("Final standings", div(class = "panel-card", h3("Final positions"),
+          DTOutput("final_table"), downloadButton("standings_csv", "Download final standings"))),
+        tabPanel("Schedule", div(class = "panel-card", h3("Courts and waves"),
+          DTOutput("schedule"), downloadButton("schedule_csv", "Download schedule"))),
+        tabPanel("Print PDFs", div(class = "panel-card downloads", h3("Print the current tournament"),
+          p("PDFs include the registered teams and every saved result. Download fresh copies after scoring. Unplayed scores stay blank."),
+          downloadButton("pool_pdf", "Pool score sheets (3 pages)"),
+          downloadButton("tally_pdf", "Reseeding tally (1 page)"),
+          downloadButton("bracket_pdf", "Bracket and placement (2 pages)"),
+          p("Pool sheets: US Letter portrait. Tally and bracket: US Letter landscape, actual size."))),
+        tabPanel("Teams & rules", div(class = "panel-card", h3("Registered teams and initial seeds"),
+          DTOutput("roster"),
+          p("Roster and initial seed order: ", tags$a("usddc2026.com", href = "https://usddc2026.com/", target = "_blank"), "; ranking snapshot published October 28, 2026. No network connection is needed to score."),
+          p("Standard and placement matches: one game to 15, win by two, no cap. Championship: best of three to 15, each win by two. Reset: one game to 21, win by two, no cap. Byes are not games."),
+          p("Within-pool tiebreaks use tied-team record, tied-team point difference, record against teams above the tied group, point difference against those teams, then overall pool point difference (WFDF 206.03, assuming no forfeits). Unresolved ties require an organizer decision before bracket seeds are released. Forfeits require a director ruling; do not enter invented scores.")))
       )
     )
   )
 )
 
 server <- function(input, output, session) {
-  ranking_data <- reactiveVal(NULL)
-  ranking_error <- reactiveVal(NULL)
-  teams_value <- reactiveVal(default_teams(12))
-
-  load_rankings <- function() {
-    ranking_error(NULL)
-    tryCatch({
-      rankings <- fetch_latest_ddc_player_rankings(
-        start_year = input$ranking_year,
-        division = input$ranking_division
-      )
-      ranking_data(rankings)
-      showNotification("DDC rankings loaded.", type = "message")
-    }, error = function(error) {
-      ranking_data(NULL)
-      ranking_error(conditionMessage(error))
-      showNotification(conditionMessage(error), type = "error", duration = 8)
-    })
+  save_status <- reactiveVal("")
+  pending_restore <- reactiveVal(NULL)
+  state <- reactive(tournament_state_13(tournament_store_13()))
+  commit <- function(snapshot) {
+    dir.create(dirname(state_file_13), recursive = TRUE, showWarnings = FALSE)
+    temp <- tempfile("tournament-", tmpdir = dirname(state_file_13))
+    on.exit(unlink(temp), add = TRUE)
+    write_snapshot_13(snapshot, temp)
+    if (!file.rename(temp, state_file_13)) stop("Could not save tournament progress. Download a backup and check the save directory.")
+    tournament_store_13(snapshot)
+    save_status(paste("Saved", format(Sys.time(), "%I:%M:%S %p", tz = "America/New_York"), "Eastern"))
   }
-
-  observeEvent(input$load_rankings, load_rankings(), ignoreInit = FALSE)
-
-  output$ranking_status <- renderText({
-    rankings <- ranking_data()
-    if (!is.null(rankings)) {
-      return(paste0(
-        nrow(rankings), " players loaded from ",
-        unique(rankings$ranking_year), " ",
-        unique(rankings$division), " rankings."
-      ))
-    }
-    if (!is.null(ranking_error())) return(paste("Rankings not loaded:", ranking_error()))
-    "Rankings not loaded yet."
+  handle_error <- function(expr) tryCatch(expr, error = function(e) {
+    if (!inherits(e, "shiny.silent.error")) showNotification(conditionMessage(e), type = "error", duration = 9)
   })
-
-  output$team_builder <- renderUI({
-    team_builder_ui(input$team_count)
+  selected_game <- reactive({
+    req(input$match_key)
+    g <- state()$games[state()$games$key == input$match_key, ]
+    req(nrow(g) == 1L)
+    g
   })
-
   observe({
-    rankings <- ranking_data()
-    choices <- if (is.null(rankings)) character(0) else c("Choose player" = "", ranking_choice_labels(rankings))
-    for (i in seq_len(input$team_count)) {
-      updateSelectizeInput(session, paste0("player1_", i), choices = choices, selected = "", server = TRUE)
-      updateSelectizeInput(session, paste0("player2_", i), choices = choices, selected = "", server = TRUE)
+    games <- state()$games
+    games <- games[games$stage == (input$score_stage %||% "Pool play") & games$status %in% c("Ready", "Complete"), ]
+    games <- games[order(games$wave, games$court), ]
+    choices <- setNames(games$key, paste0(games$key, " | ", games$teamA, " vs ", games$teamB, " [", games$status, "]"))
+    current <- isolate(input$match_key)
+    selected <- if (length(current) && current %in% games$key) current else {
+      next_ready <- games$key[games$status == "Ready"]
+      if (length(next_ready)) next_ready[1] else if (nrow(games)) games$key[1] else character()
     }
+    updateSelectInput(session, "match_key", choices = choices, selected = selected)
   })
-
-  observeEvent(input$team_count, {
-    if (nrow(teams_value()) != input$team_count) {
-      teams_value(default_teams(input$team_count))
-    }
-  })
-
-  observeEvent(input$apply_teams, {
-    rankings <- ranking_data()
-    validate(need(!is.null(rankings), "Load DDC rankings before building the schedule."))
-
-    player1_ids <- selected_player_ids(input, input$team_count, "player1")
-    player2_ids <- selected_player_ids(input, input$team_count, "player2")
-    selected_ids <- c(player1_ids, player2_ids)
-
-    validate(need(!any(is.na(selected_ids)), "Choose two ranked players for every team."))
-    validate(need(length(unique(selected_ids)) == length(selected_ids), "Each player can only appear once."))
-
-    teams_value(seed_teams_from_player_ids(player1_ids, player2_ids, rankings))
-    showNotification("Schedule rebuilt from selected teams and ranking points.", type = "message")
-  })
-
-  teams <- reactive(teams_value())
-
-  preset <- reactive(make_us_championship_preset(teams()))
-  pool_stage <- reactive(preset()$pool_stage)
-  pool_scores <- reactive(scores_for_games(pool_stage()$games, input, "pool"))
-
-  championship_seed_order <- reactive({
-    if (!games_complete(pool_scores())) return(NULL)
-    seed_top_eight(teams(), pool_stage(), pool_scores())
-  })
-
-  bracket_template <- reactive({
-    order <- championship_seed_order()
-    if (is.null(order)) return(NULL)
-    make_top8_double_elim(teams(), order, game_offset = max(pool_stage()$games$game_id))
-  })
-
-  bracket_games <- reactive({
-    games <- bracket_template()
-    if (is.null(games)) return(NULL)
-    resolve_dependency_games(games, bracket_scores())
-  })
-
-  bracket_scores <- reactive({
-    games <- bracket_template()
-    if (is.null(games)) return(tibble(game_id = integer(), scoreA = numeric(), scoreB = numeric()))
-    scores_for_games(games, input, "bracket")
-  })
-
-  placement_template <- reactive({
-    order <- championship_seed_order()
-    if (is.null(order)) return(NULL)
-    offset <- max(pool_stage()$games$game_id) + nrow(bracket_template())
-    make_bottom_placement(teams(), order, game_offset = offset)
-  })
-9
-  placement_games <- reactive({
-    games <- placement_template()
-    if (is.null(games)) return(NULL)
-    resolve_dependency_games(games, placement_scores())
-  })
-
-  placement_scores <- reactive({
-    games <- placement_template()
-    if (is.null(games)) return(tibble(game_id = integer(), scoreA = numeric(), scoreB = numeric()))
-    scores_for_games(games, input, "placement")
-  })
-
-  all_games <- reactive(bind_rows(
-    pool_stage()$games,
-    if (!is.null(bracket_games())) bracket_games(),
-    if (!is.null(placement_games())) placement_games()
-  ))
-
-  all_scores <- reactive(bind_rows(
-    pool_scores(),
-    if (!is.null(bracket_games())) bracket_scores(),
-    if (!is.null(placement_games())) placement_scores()
-  ))
-
-  output$format_summary <- renderUI({
-    div(class = "format-note", strong("Format: "), format_summary_text(nrow(teams())))
-  })
-
-  output$teams_table <- renderDT({
-    pool_tbl <- bind_rows(pool_stage()$pools)
-    datatable(
-      pool_tbl %>%
-        select(
-          Seed = seed,
-          Team = team,
-          `Team points` = team_points,
-          Player1 = player1,
-          `P1 rank` = player1_rank,
-          Player2 = player2,
-          `P2 rank` = player2_rank,
-          Pool = pool,
-          `Pool seed` = pool_position
-        ),
-      rownames = FALSE,
-      options = list(pageLength = 12)
-    )
-  })
-
-  output$schedule_table <- renderDT({
-    datatable(display_schedule(all_games(), all_scores()), rownames = FALSE, options = list(pageLength = 30))
-  })
-
-  output$score_inputs <- renderUI({
+  output$score_editor <- renderUI({
+    games <- state()$games
+    available <- games$stage == (input$score_stage %||% "Pool play") & games$status %in% c("Ready", "Complete")
+    validate(need(any(available), "Complete the prerequisite matches to unlock this stage."))
+    g <- selected_game()
+    validate(need(g$status %in% c("Ready", "Complete"), "Select a ready match."))
+    record <- tournament_store_13()$results[[g$key]]
+    scores <- matrix(NA_real_, nrow = g$best_of, ncol = 2)
+    if (!is.null(record)) scores[seq_len(nrow(record$scores)), ] <- record$scores
     tagList(
-      score_card(pool_stage()$games, "pool"),
-      if (!games_complete(pool_scores())) div(class = "warn-note", "Complete all pool scores to seed the top-8 championship bracket and placement games."),
-      if (!is.null(bracket_games())) score_card(bracket_games(), "bracket"),
-      if (!is.null(placement_games())) score_card(placement_games(), "placement")
+      h4(paste(g$teamA, "vs", g$teamB)),
+      p(paste0(if (g$stage == "Pool play") "Round " else "Wave ", g$wave, " | Court ", g$court,
+               if (g$best_of == 3) " | Best of three to 15, win by two" else paste0(" | To ", g$target, ", win by two"))),
+      if (g$best_of == 3) helpText("Enter each game's points. Leave game 3 blank after a 2-0 series."),
+      lapply(seq_len(g$best_of), function(i) div(class = "score-game",
+        if (g$best_of == 3) strong(paste("Game", i)),
+        div(class = "score-pair",
+          numericInput(paste0("scoreA_", i), g$teamA, value = scores[i, 1], min = 0, step = 1, width = "100%"),
+          numericInput(paste0("scoreB_", i), g$teamB, value = scores[i, 2], min = 0, step = 1, width = "100%"))))
     )
   })
-
-  output$standings_ui <- renderUI({
-    pool_names <- names(pool_stage()$pools)
-    tagList(
-      lapply(pool_names, function(group_name) {
-        table_id <- paste0("standings_", str_replace_all(str_to_lower(group_name), "[^a-z0-9]+", "_"))
-        output[[table_id]] <- renderDT({
-          team_standings(teams(), pool_stage()$games, pool_scores(), group_name) %>%
-            select(Place = place, Team = team, Seed = seed, Played = played, Wins = wins, Losses = losses,
-                   `Win %` = win_pct, `Point diff` = point_diff, `For` = points_for, `Against` = points_against) %>%
-            datatable(rownames = FALSE, options = list(dom = "t"))
-        })
-        div(class = "panel", h3(group_name), DTOutput(table_id))
-      }),
-      if (!is.null(championship_seed_order())) {
-        output$championship_seeds <- renderDT({
-          championship_seed_order() %>%
-            select(`Champ seed` = championship_seed, Team = team, `Pool place` = pool_place, Pool = pool, Wins = wins, `Point diff` = point_diff, `Original seed` = seed) %>%
-            datatable(rownames = FALSE, options = list(dom = "t"))
-        })
-        div(class = "panel", h3("Championship Seeds"), DTOutput("championship_seeds"))
-      }
-    )
+  observeEvent(input$save_score, handle_error({
+    req(input$save_score > 0)
+    g <- selected_game()
+    scores <- do.call(rbind, lapply(seq_len(g$best_of), function(i) c(input[[paste0("scoreA_", i)]] %||% NA_real_, input[[paste0("scoreB_", i)]] %||% NA_real_)))
+    used <- rowSums(!is.na(scores)) > 0
+    if (any(used) && !identical(which(used), seq_len(sum(used)))) stop("Enter games in order, without gaps.")
+    updated <- save_result_13(tournament_store_13(), g$key, scores[used, , drop = FALSE])
+    cleared <- attr(updated, "cleared")
+    commit(updated)
+    showNotification(if (length(cleared)) paste("Result saved. Cleared obsolete results:", paste(cleared, collapse = ", ")) else "Result saved.", type = "message", duration = 8)
+  }))
+  observeEvent(input$clear_score, {
+    req(input$clear_score > 0, input$match_key)
+    showModal(modalDialog(title = paste("Clear", input$match_key, "result?"),
+      "Dependent results will also be cleared if their participants can no longer be determined.",
+      footer = tagList(modalButton("Cancel"), actionButton("confirm_clear", "Clear result", class = "btn-danger"))))
   })
-
-  output$credit_ui <- renderUI({
-    tags$div(
-      tags$p("This Shiny app was built for U.S. fixed-team DDC tournaments."),
-      tags$p(
-        class = "credit",
-        "Initial seeding can use the current player ranking API behind ",
-        tags$a("doubledisccourt.com/results/rankings.html", href = "https://doubledisccourt.com/results/rankings.html", target = "_blank"),
-        "."
-      )
-    )
+  observeEvent(input$confirm_clear, handle_error({ req(input$confirm_clear > 0); commit(save_result_13(tournament_store_13(), input$match_key)); removeModal() }))
+  observeEvent(input$review_restore, handle_error({
+    req(input$review_restore > 0, input$restore_file)
+    snap <- read_snapshot_13(input$restore_file$datapath)
+    pending_restore(snap)
+    showModal(modalDialog(title = "Restore this tournament backup?",
+      paste(length(snap$results), "saved match results. This replaces the current tournament progress."),
+      footer = tagList(modalButton("Cancel"), actionButton("confirm_restore", "Restore backup", class = "btn-primary"))))
+  }))
+  observeEvent(input$confirm_restore, handle_error({ req(input$confirm_restore > 0, pending_restore()); commit(pending_restore()); pending_restore(NULL); removeModal() }))
+  output$save_status <- renderText(save_status())
+  output$progress <- renderText({
+    s <- state(); g <- s$games
+    paste0(sum(g$stage == "Pool play" & g$status == "Complete"), "/22 pool matches complete | ",
+           sum(g$stage != "Pool play" & g$status == "Complete"), " bracket / placement matches complete | ",
+           sum(!is.na(s$final$team_id)), "/13 final places decided")
   })
-
-  output$download_schedule <- downloadHandler(
-    filename = function() paste0("ddc-us-championship-schedule-", Sys.Date(), ".csv"),
-    content = function(file) write.csv(display_schedule(all_games(), all_scores()), file, row.names = FALSE)
-  )
-
-  output$download_standings <- downloadHandler(
-    filename = function() paste0("ddc-us-championship-standings-", Sys.Date(), ".csv"),
-    content = function(file) {
-      standings <- map_dfr(names(pool_stage()$pools), function(group_name) {
-        team_standings(teams(), pool_stage()$games, pool_scores(), group_name) %>% mutate(group = group_name, .before = 1)
-      })
-      write.csv(standings, file, row.names = FALSE)
-    }
-  )
+  display_games <- function(games) {
+    data.frame(Match = games$key, Stage = games$stage,
+      Group = ifelse(games$pool == "", "Bracket", paste("Pool", games$pool)),
+      `Round / wave` = games$wave, Court = games$court,
+      `Team A` = ifelse(is.na(games$teamA), games$sourceA, games$teamA),
+      `Team B` = ifelse(is.na(games$teamB), games$sourceB, games$teamB),
+      Result = games$score, Status = games$status, check.names = FALSE)
+  }
+  dt <- function(x, pageLength = 40L) {
+    labels <- c(pool_seed = "Pool seed", seed = "Original seed", team = "Team", pool = "Pool",
+      played = "Played", wins = "Wins", losses = "Losses", point_diff = "Point diff", pool_finish = "Pool finish",
+      earned_seed = "Earned seed", points_for = "Points for", points_against = "Points against",
+      place = "Place", games_played = "Games played", points = "Ranking points")
+    found <- names(x) %in% names(labels)
+    names(x)[found] <- labels[names(x)[found]]
+    datatable(x, rownames = FALSE, selection = "none", options = list(pageLength = pageLength, scrollX = TRUE, order = list(), dom = "tip"))
+  }
+  for (p in c("A", "B", "C")) local({
+    pool <- p
+    output[[paste0("pool_", pool)]] <- renderDT({
+      t <- state()$tally; t <- t[t$pool == pool, ]
+      dt(t[, c("pool_seed", "seed", "team", "played", "wins", "losses", "point_diff", "pool_finish", "earned_seed")])
+    })
+    output[[paste0("games_", pool)]] <- renderDT({ g <- state()$games; dt(display_games(g[g$pool == pool, ])) })
+    observeEvent(input[[paste0("save_tie_", pool)]], handle_error({
+      req(input[[paste0("save_tie_", pool)]] > 0)
+      order <- suppressWarnings(as.integer(trimws(strsplit(input[[paste0("tie_", pool)]], ",", fixed = TRUE)[[1]])))
+      commit(save_tie_order_13(tournament_store_13(), pool, order))
+      showNotification("Tie order saved. Only otherwise unresolved ties use this order.", type = "message")
+    }))
+  })
+  output$pools_view <- renderUI(tagList(lapply(c("A", "B", "C"), function(p) div(class = "panel-card",
+    h3(paste("Pool", p)), p(paste("Courts", paste(seq_len(2) + match(p, c("A", "B", "C")) * 2 - 2, collapse = " and "))),
+    DTOutput(paste0("pool_", p)), h4("Matches"), DTOutput(paste0("games_", p))))))
+  output$tally <- renderDT(dt(state()$tally[, c("pool", "pool_seed", "seed", "team", "wins", "losses", "points_for", "points_against", "pool_finish", "earned_seed")]))
+  output$ties_view <- renderUI({
+    s <- state(); tagList(lapply(c("A", "B", "C"), function(p) {
+      t <- s$tally[s$tally$pool == p, ]; g <- s$games[s$games$pool == p, ]
+      if (!all(g$status == "Complete") || !any(t$unresolved)) return(NULL)
+      div(class = "panel-card", h4(paste("Pool", p, if (any(!t$resolved)) "needs a tie decision" else "tie decision saved")),
+        p("The statistical comparisons still leave a tie. Resolve it with a playoff or disc flip, then list every original seed in this pool in the desired tie order. Only otherwise tied teams use this order."),
+        textInput(paste0("tie_", p), "Original seeds, separated by commas", value = paste(t$seed, collapse = ", ")),
+        actionButton(paste0("save_tie_", p), "Save tie decision"))
+    }))
+  })
+  output$bracket <- renderDT({ g <- state()$games; dt(display_games(g[g$stage == "Double elimination", ])) })
+  output$placements <- renderDT({ g <- state()$games; dt(display_games(g[g$stage == "Placement", ])) })
+  output$schedule <- renderDT({ g <- state()$games; g <- g[order(g$stage != "Pool play", g$wave, g$court), ]; dt(display_games(g), 60) })
+  output$final_table <- renderDT(dt(state()$final[, c("place", "team", "games_played")]))
+  output$roster <- renderDT(dt(state()$teams[, c("seed", "team", "pool", "pool_seed", "points")]))
+  output$backup <- downloadHandler(filename = function() paste0("ddc-tournament-", Sys.Date(), ".json"), contentType = "application/json",
+    content = function(file) write_snapshot_13(tournament_store_13(), file))
+  output$pool_pdf <- downloadHandler(filename = function() "ddc-2026-pool-score-sheets.pdf", contentType = "application/pdf",
+    content = function(file) write_pool_pdfs_13(file, state(), tournament_store_13()))
+  output$tally_pdf <- downloadHandler(filename = function() "ddc-2026-reseeding-tally.pdf", contentType = "application/pdf",
+    content = function(file) write_tally_pdf_13(file, state()))
+  output$bracket_pdf <- downloadHandler(filename = function() "ddc-2026-bracket-and-placement.pdf", contentType = "application/pdf",
+    content = function(file) write_bracket_pdf_13(file, state(), tournament_store_13()))
+  output$standings_csv <- downloadHandler(filename = function() "ddc-2026-final-standings.csv", content = function(file) write.csv(state()$final, file, row.names = FALSE))
+  output$schedule_csv <- downloadHandler(filename = function() "ddc-2026-schedule.csv", content = function(file) write.csv(display_games(state()$games), file, row.names = FALSE))
 }
-
 shinyApp(ui, server)

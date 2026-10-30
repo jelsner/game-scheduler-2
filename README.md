@@ -1,106 +1,148 @@
-# DDC Fixed-Team Tournament Scheduler
+# US DDC Championship 2026 scoring desk
 
-An R/Shiny app for scheduling fixed-team Double Disc Court tournaments, focused first on a 10-12 team U.S. Championship format.
+An R/Shiny app for the 13 registered teams at the November 7-8, 2026 championship
+in Tallahassee. The app runs offline after its R packages are installed. The
+roster uses first names and last initials from the tournament website's October
+28 initial-seed list: [usddc2026.com](https://usddc2026.com/).
 
-## US Championship Preset
+## Tournament format
 
-The active preset supports 10, 11, or 12 fixed teams:
+The original seeds are snake-seeded into three pools, with two courts per pool:
 
-- 10 teams: two 5-team pools, then a top-8 double-elimination bracket and a 9th-place match.
-- 11 teams: one 6-team pool and one 5-team pool, then a top-8 double-elimination bracket and a 9th-11th placement round robin.
-- 12 teams: two 6-team pools, then a top-8 double-elimination bracket and a 9th-12th placement bracket.
+| Pool | Original overall seeds | Courts |
+| --- | --- | --- |
+| A (5 teams) | 1, 6, 7, 12, 13 | 1-2 |
+| B (4 teams) | 2, 5, 8, 11 | 3-4 |
+| C (4 teams) | 3, 4, 9, 10 | 5-6 |
 
-Teams are built with searchable player dropdowns backed by the current international DDC player ranking API. Each team's seed comes from the sum of both players' ranking points.
+All 22 pool matches are round robin. Pool seeds 1 and 2 meet in each pool's
+final round. Each pool keeps its original overall seed slots: pool finish
+assigns those slots, lowest number first. Records from different pools are
+never compared. Original seeds remain on the roster alongside earned seeds.
 
-## Printing Pool Score Sheets
+Pool standings compare wins, tied-team wins, tied-team point difference,
+wins against teams above the initial tied group, point difference against those
+teams, and overall pool point difference, following WFDF 206.03 for completed
+matches without forfeits. A remaining tie blocks earned seeds until the director
+records the result of a playoff/disc flip in the **Reseeding tally** tab. The
+entered tie order only affects teams still tied on all statistical comparisons.
+The app does not invent forfeit scores; a forfeit requires a director ruling.
 
-Standalone US Letter templates for four- and five-team pools are in
-`output/pdf/`. Each sheet uses two courts and includes original overall seeds,
-pool seeds, running W/L records, pool finishing places, and earned bracket seeds.
-The combined three-pool tally has space for up to 15 teams. Within each pool,
-rank teams by W/L and resolve ties using the agreed DDC tiebreaks. Assign that
-pool's original overall seed slots from best to worst to its finishers in order.
-Keep the original seeds on the roster and record the earned bracket seeds
-separately. This method makes no cross-pool record comparisons.
+All 13 teams then enter the seeded double-elimination bracket. Seeds 1-3 get
+opening byes. The bracket and six-court wave plan match the agreed paper draw.
+Standard matches are one game to 15, win by two, no cap. G24 is best of three
+games to 15, each win by two. If the lower-bracket finalist wins that series,
+G25 is one game to 21, win by two; otherwise G25 is not played.
 
-To regenerate the blank templates from the repository root:
+Placement matches determine every final position:
+
+- Loser of G13 finishes 13th and is done.
+- Losers of G14-G17 form the 9th-12th mini bracket. Order their **earned**
+  bracket seeds best to worst: P1 is M1 vs M4; P2 is M2 vs M3. Winners play P3
+  for 9th/10th, and losers play P4 for 11th/12th.
+- Losers of G18/G19 play P5 for 7th/8th.
+- Losers of G20/G21 play P6 for 5th/6th.
+- Losers of G22/G23 finish 4th/3rd; the championship decides 1st/2nd.
+
+Placement games use free courts: P1/P2 in wave 4, P3/P4/P5 in wave 5, P6 in
+wave 6. A wave starts games together. Start the next wave once the prior wave
+finishes, allowing the agreed rest period; there are no assumed clock times.
+
+## Run and score locally
+
+Open `app.R` in RStudio and click **Run App**, or run from the repository root:
+
+```r
+install.packages(c("shiny", "dplyr", "DT", "jsonlite"))
+shiny::runApp()
+```
+
+1. Review the **Pools** and **Teams & rules** tabs.
+2. In **Score a match**, choose the stage and a ready match. Enter points and
+   click **Save result**. Completed matches remain available for corrections.
+3. Enter individual game scores for G24; leave game 3 blank after a 2-0 series.
+   Invalid scores, incomplete series, and games entered after a clinch are rejected.
+4. After pool play, resolve any remaining pool ties in **Reseeding tally**.
+   The bracket unlocks when all earned seeds are confirmed.
+5. Continue scoring bracket and placement matches as prerequisites finish.
+   **Final standings** shows decided places and actual games played, including
+   pool/placement games and individual championship games. Byes are excluded.
+
+When a correction changes a later match's participants, the app permanently
+clears that match's old result and affected descendants. Scores are never
+silently assigned to different teams. A correction that leaves the participants
+unchanged preserves valid later results. Clearing a result requires confirmation.
+
+## Saving and backups
+
+Every saved change is atomically written to `data/tournament-state.json`.
+Reloads and local app restarts recover it. Sessions in the same R process share
+the tournament. Set `DDC_STATE_FILE` to use a different save path, for example
+when testing. The save file is excluded from Git.
+
+Download a JSON backup regularly. **Review restore** validates a selected backup
+and asks before replacing the current tournament. Backups include individual
+series-game scores and director tie decisions. Malformed/incompatible backups
+are rejected. Backups also identify the roster: scored backups from an earlier
+roster cannot be applied to replacement teams. Empty older backups are accepted.
+If an existing local save is corrupt, startup reports the error
+rather than overwriting it.
+
+Use one scoring operator and one server process. This implementation is not a
+multi-worker database or a public read-only spectator view. On shinyapps.io,
+local disk is ephemeral across deployments/instance replacement; download
+backups and restore them as needed. The refactor does not deploy itself.
+
+## PDFs
+
+The **Print PDFs** tab generates current snapshots directly in R, with no Python
+or system PDF dependency on the server:
+
+- `output/pdf/ddc-2026-pool-score-sheets.pdf`: three portrait Letter pages with
+  named rosters, original and pool seeds, match IDs/scores, cumulative W/L and earned seeds.
+- `output/pdf/ddc-2026-reseeding-tally.pdf`: one landscape Letter page with all
+  13 teams, original seeds, pool records, finishing places and earned seeds.
+- `output/pdf/ddc-2026-bracket-and-placement.pdf`: two landscape Letter pages,
+  upper/championship on page 1 and lower/placement on page 2, plus the six-court plan.
+
+Unplayed scores and unknown bracket participants remain blank. Bracket names
+fill in after pool results establish earned seeds. All downloads reflect saved
+scores, so download fresh PDFs after scoring. Print at actual size.
+
+Regenerate the initial named sheets from the repository root:
 
 ```r
 library(dplyr)
 source("R/us_championship_engine.R")
-source("R/pool_score_sheets.R")
-for (n in c(4, 5)) {
-  write_pool_score_sheet(sprintf("output/pdf/ddc-%d-team-pool-score-sheet.pdf", n), n)
-}
-write_pool_reseeding_tally("output/pdf/ddc-three-pool-reseeding-tally.pdf")
+source("R/championship_13.R")
+source("R/championship_pdfs.R")
+snapshot <- empty_tournament()
+state <- tournament_state_13(snapshot)
+write_pool_pdfs_13("output/pdf/ddc-2026-pool-score-sheets.pdf", state, snapshot)
+write_tally_pdf_13("output/pdf/ddc-2026-reseeding-tally.pdf", state)
+write_bracket_pdf_13("output/pdf/ddc-2026-bracket-and-placement.pdf", state, snapshot)
 ```
 
-## Printable 13-Team Bracket
+Earlier blank templates and the 11 x 17 PDF/Python generators remain in the
+repository as reference artifacts. The active app uses the R generators and
+13-team model, not the legacy 10-12-team/top-eight helpers.
 
-`output/pdf/ddc-13-team-double-elimination-bracket.pdf` is a standalone,
-single-page 11 x 17 landscape bracket. Enter the earned seeds from the pool
-tally. Seeds 1-3 receive opening byes. The sheet includes winner/loser paths,
-score boxes, a six-court wave schedule, and a conditional championship reset.
-There are 24 matches, or 25 with a reset. Standard matches are one game to
-15, win by 2; the championship is best of three games to 15, win by 2, and
-the reset is one game to 21, win by 2. Placement matches are not yet included. Start each wave after the previous
-wave finishes and allow the agreed rest period between games.
-
-Regenerate it with Python and `reportlab`:
+## Verification
 
 ```sh
-python3 scripts/create_13_team_bracket.py
+Rscript tests/championship_13.R
+Rscript tests/app_13.R
+Rscript tests/pool_score_sheets.R
 ```
 
-The generator verifies 10,002 simulated tournaments, including both final
-outcomes, second-loss eliminations, and simultaneous court assignments.
+The engine suite checks pool pair coverage and courts, earned seeds, exact
+cyclic ties/director decisions, score/series validation, all 13 final places,
+reset/no-reset tournaments, downstream correction, backup round trips and
+filled PDFs. It runs 24 complete simulated tournaments. The Shiny suite checks
+actual save/restore/download handlers using isolated test storage. Run it after
+the engine suite, which creates the completed-tournament test fixture.
 
-## Two-Page Letter Bracket
+## Credit and license
 
-`output/pdf/ddc-13-team-double-elimination-bracket-letter.pdf` is the two-page
-US Letter landscape version. Page 1 has the upper bracket, championship/reset,
-and six-court schedule. Page 2 has the lower bracket and all placement games:
-a four-team mini bracket for 9th-12th, one game for 7th/8th, and one for 5th/6th.
-Mini-bracket seeds use the earned bracket seeds of the losers of G14-G17,
-ordered from lowest number to highest. The 13th-place team is finished.
-
-The placement games use courts left free by the main bracket: P1/P2 in wave 4,
-P3/P4/P5 in wave 5, and P6 in wave 6. Print both pages at actual size on separate
-8.5 x 11 sheets. Generate this version with:
-
-```sh
-python3 scripts/create_13_team_letter_bracket.py
-```
-
-The generator also verifies placement destinations and the combined court
-schedule across 5,000 simulated tournaments.
-
-## Running Locally
-
-Open `app.R` in RStudio and click **Run App**, or run:
-
-```r
-shiny::runApp()
-```
-
-Required R packages:
-
-```r
-install.packages(c("shiny", "dplyr", "tidyr", "purrr", "stringr", "DT", "jsonlite", "httr2"))
-```
-
-## Ranking Integration
-
-Ranking fetches use the doubledisccourt.com endpoint behind:
-
-<https://doubledisccourt.com/results/rankings.html>
-
-The ranked player list is kept in the Shiny session while the app is running. It is not written to local disk, so the app remains suitable for shinyapps.io deployment.
-
-## Credit And License
-
-This project is inspired by Heikki Wilenius's GPL DDC tournament manager:
-
-<https://github.com/wilenius/ddc>
-
-This project is released under GPL-3. See `LICENSE`.
+Inspired by Heikki Wilenius's GPL DDC tournament manager:
+<https://github.com/wilenius/ddc>. Released under GPL-3; see `LICENSE`.

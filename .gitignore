@@ -3,3 +3,8 @@
 .RData
 .Ruserdata
 rsconnect/
+# Local tournament progress and verification artifacts
+data/tournament-state*.json
+tmp/
+__pycache__/
+.DS_Store
