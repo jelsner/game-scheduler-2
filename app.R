@@ -28,9 +28,17 @@ ui <- fluidPage(
     table.dataTable td, table.dataTable th { white-space:nowrap; } .help-block { color:#526776; }
     .shiny-output-error-validation { color:#a13e23; }
     @media(max-width:760px){ .hero h1 {font-size:24px;} .well {margin-bottom:12px;} }
-  "))),
+  ")),
+    tags$link(rel = "stylesheet", href = "readability.css"),
+    tags$script(src = "readability.js")
+  ),
   div(class = "hero", h1("US DDC Championship 2026"),
       p("November 7-8 | Tallahassee | 13 teams | Six courts")),
+  div(class = "display-controls", role = "region", `aria-label` = "Display preferences",
+    checkboxInput("sunlight_mode", "Sunlight mode", value = TRUE),
+    selectInput("desk_text_size", "Text size", choices = c("Standard" = "16", "Large" = "19", "Extra large" = "22"),
+      selected = "19", selectize = FALSE, width = "190px"),
+    span(class = "display-hint muted", "Display preferences are remembered on this browser.")),
   div(class = "format-note", strong("Tournament format: "),
       "Three pools (5 + 4 + 4), then all 13 teams enter double elimination. Each pool retains its original seed slots; teams earn those slots by pool finish. Placement games decide 5th-12th."),
   sidebarLayout(
