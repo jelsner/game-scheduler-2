@@ -37,6 +37,7 @@ ui <- fluidPage(
     sidebarPanel(width = 4,
       h3("Score a match"),
       selectInput("score_stage", "Stage", c("Pool play", "Double elimination", "Placement")),
+      uiOutput("stage_notice"),
       selectInput("match_key", "Ready or completed match", choices = character()),
       uiOutput("score_editor"),
       actionButton("save_score", "Save result", class = "btn-primary"),
@@ -87,6 +88,49 @@ server <- function(input, output, session) {
   save_status <- reactiveVal("")
   pending_restore <- reactiveVal(NULL)
   state <- reactive(tournament_state_13(tournament_store_13()))
+  active_stage <- reactiveVal("Pool play")
+  blocked_stage <- reactiveVal(NULL)
+  stage_problem <- function(stage, tournament) {
+    if (length(stage) != 1L || is.na(stage) || !stage %in% c("Pool play", "Double elimination", "Placement")) return("Choose one of the listed stages.")
+    if (stage == "Pool play") return(NULL)
+    if (stage == "Double elimination") {
+      if (tournament$seeded) return(NULL)
+      remaining <- sum(tournament$games$stage == "Pool play" & tournament$games$status != "Complete")
+      return(if (remaining) paste0("Pool play is not complete: ", remaining,
+        " pool matches still need results. Finish pool play and resolve any ties before scoring double elimination.") else
+        "Pool play has unresolved ties. Record the tie decisions in Reseeding tally before scoring double elimination.")
+    }
+    if (stage == "Placement") {
+      ready <- tournament$games$stage == "Placement" & tournament$games$status %in% c("Ready", "Complete")
+      if (any(ready)) return(NULL)
+      return("Placement games are not ready yet. Continue double-elimination scoring until their prerequisite matches are complete.")
+    }
+    "Choose one of the listed stages."
+  }
+  observe({
+    requested <- input$score_stage %||% "Pool play"
+    tournament <- state()
+    problem <- stage_problem(requested, tournament)
+    previous <- isolate(active_stage())
+    if (!is.null(problem)) {
+      # Use the accepted stage for match choices; never clear them while the
+      # browser is briefly displaying an unavailable requested stage.
+      fallback <- if (is.null(stage_problem(previous, tournament))) previous else "Pool play"
+      active_stage(fallback)
+      blocked_stage(requested)
+      updateSelectInput(session, "score_stage", selected = fallback)
+      showNotification(problem, type = "warning", duration = 10, id = "stage-warning")
+    } else {
+      active_stage(requested)
+      if (requested != previous) blocked_stage(NULL)
+    }
+  })
+  output$stage_notice <- renderUI({
+    stage <- blocked_stage()
+    if (is.null(stage)) return(NULL)
+    problem <- stage_problem(stage, state())
+    if (!is.null(problem)) div(class = "alert alert-warning", role = "status", problem)
+  })
   commit <- function(snapshot) {
     dir.create(dirname(state_file_13), recursive = TRUE, showWarnings = FALSE)
     temp <- tempfile("tournament-", tmpdir = dirname(state_file_13))
@@ -100,18 +144,19 @@ server <- function(input, output, session) {
     if (!inherits(e, "shiny.silent.error")) showNotification(conditionMessage(e), type = "error", duration = 9)
   })
   selected_game <- reactive({
-    req(input$match_key)
-    g <- state()$games[state()$games$key == input$match_key, ]
-    req(nrow(g) == 1L)
+    key <- input$match_key
+    if (length(key) != 1L || is.na(key) || !nzchar(key)) return(NULL)
+    g <- state()$games[state()$games$key == key, ]
+    if (nrow(g) != 1L || g$stage != active_stage() || !g$status %in% c("Ready", "Complete")) return(NULL)
     g
   })
   observe({
     games <- state()$games
-    games <- games[games$stage == (input$score_stage %||% "Pool play") & games$status %in% c("Ready", "Complete"), ]
+    games <- games[games$stage == active_stage() & games$status %in% c("Ready", "Complete"), ]
     games <- games[order(games$wave, games$court), ]
     choices <- setNames(games$key, paste0(games$key, " | ", games$teamA, " vs ", games$teamB, " [", games$status, "]"))
     current <- isolate(input$match_key)
-    selected <- if (length(current) && current %in% games$key) current else {
+    selected <- if (length(current) == 1L && !is.na(current) && current %in% games$key) current else {
       next_ready <- games$key[games$status == "Ready"]
       if (length(next_ready)) next_ready[1] else if (nrow(games)) games$key[1] else character()
     }
@@ -119,10 +164,10 @@ server <- function(input, output, session) {
   })
   output$score_editor <- renderUI({
     games <- state()$games
-    available <- games$stage == (input$score_stage %||% "Pool play") & games$status %in% c("Ready", "Complete")
-    validate(need(any(available), "Complete the prerequisite matches to unlock this stage."))
+    available <- games$stage == active_stage() & games$status %in% c("Ready", "Complete")
+    if (!any(available)) return(div(class = "alert alert-warning", role = "status", "Complete the prerequisite matches to unlock this stage."))
     g <- selected_game()
-    validate(need(g$status %in% c("Ready", "Complete"), "Select a ready match."))
+    if (is.null(g)) return(helpText("Choose a ready or completed match from the list."))
     record <- tournament_store_13()$results[[g$key]]
     scores <- matrix(NA_real_, nrow = g$best_of, ncol = 2)
     if (!is.null(record)) scores[seq_len(nrow(record$scores)), ] <- record$scores
@@ -141,6 +186,8 @@ server <- function(input, output, session) {
   observeEvent(input$save_score, handle_error({
     req(input$save_score > 0)
     g <- selected_game()
+    if (is.null(g)) showNotification("Choose a ready or completed match before saving a result.", type = "warning")
+    req(!is.null(g))
     scores <- do.call(rbind, lapply(seq_len(g$best_of), function(i) c(input[[paste0("scoreA_", i)]] %||% NA_real_, input[[paste0("scoreB_", i)]] %||% NA_real_)))
     used <- rowSums(!is.na(scores)) > 0
     if (any(used) && !identical(which(used), seq_len(sum(used)))) stop("Enter games in order, without gaps.")
@@ -151,6 +198,10 @@ server <- function(input, output, session) {
   }))
   observeEvent(input$clear_score, {
     req(input$clear_score > 0, input$match_key)
+    if (is.null(selected_game())) {
+      showNotification("Choose a ready or completed match before clearing a result.", type = "warning")
+      return()
+    }
     showModal(modalDialog(title = paste("Clear", input$match_key, "result?"),
       "Dependent results will also be cleared if their participants can no longer be determined.",
       footer = tagList(modalButton("Cancel"), actionButton("confirm_clear", "Clear result", class = "btn-danger"))))

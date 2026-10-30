@@ -60,6 +60,9 @@ shiny::runApp()
 1. Review the **Pools** and **Teams & rules** tabs.
 2. In **Score a match**, choose the stage and a ready match. Enter points and
    click **Save result**. Completed matches remain available for corrections.
+   Selecting a stage before its prerequisites finish shows a warning and keeps
+   the current scoring stage open. Placement unlocks as soon as its source
+   matches finish; it does not wait for the whole double-elimination bracket.
 3. Enter individual game scores for G24; leave game 3 blank after a 2-0 series.
    Invalid scores, incomplete series, and games entered after a clinch are rejected.
 4. After pool play, resolve any remaining pool ties in **Reseeding tally**.
@@ -132,6 +135,7 @@ repository as reference artifacts. The active app uses the R generators and
 ```sh
 Rscript tests/championship_13.R
 Rscript tests/app_13.R
+Rscript tests/stage_navigation_13.R
 Rscript tests/pool_score_sheets.R
 ```
 
