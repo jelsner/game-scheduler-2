@@ -1,0 +1,40 @@
+"game_id","game_key","day","stage","group","round","court","label","teamA_id","teamB_id","teamA","teamB","sourceA","sourceB","scoreA","scoreB","diff","winner_id","loser_id","slotA_type","slotA_ref","slotB_type","slotB_ref","target","series","game"
+1,"P1",1,"Pool Play","Pool A",1,1,"Pool play",4,9,"Jordan Huston / Jacob Dummeldinger","Diana Elsner / Lindsi Allman",NA,NA,15,10,5,4,9,NA,NA,NA,NA,15,NA,NA
+2,"P2",1,"Pool Play","Pool A",1,2,"Pool play",5,8,"Jasun Burdick / Drew Magee","John Elsner / Tobias Cole",NA,NA,17,15,2,5,8,NA,NA,NA,NA,15,NA,NA
+3,"P3",1,"Pool Play","Pool A",2,1,"Pool play",9,1,"Diana Elsner / Lindsi Allman","Vergil Weatherford / Conrad Damon",NA,NA,5,15,-10,1,9,NA,NA,NA,NA,15,NA,NA
+4,"P4",1,"Pool Play","Pool A",2,2,"Pool play",5,4,"Jasun Burdick / Drew Magee","Jordan Huston / Jacob Dummeldinger",NA,NA,8,15,-7,4,5,NA,NA,NA,NA,15,NA,NA
+5,"P5",1,"Pool Play","Pool A",3,1,"Pool play",1,8,"Vergil Weatherford / Conrad Damon","John Elsner / Tobias Cole",NA,NA,15,7,8,1,8,NA,NA,NA,NA,15,NA,NA
+6,"P6",1,"Pool Play","Pool A",3,2,"Pool play",9,5,"Diana Elsner / Lindsi Allman","Jasun Burdick / Drew Magee",NA,NA,13,15,-2,5,9,NA,NA,NA,NA,15,NA,NA
+7,"P7",1,"Pool Play","Pool A",4,1,"Pool play",5,1,"Jasun Burdick / Drew Magee","Vergil Weatherford / Conrad Damon",NA,NA,15,7,8,5,1,NA,NA,NA,NA,15,NA,NA
+8,"P8",1,"Pool Play","Pool A",4,2,"Pool play",4,8,"Jordan Huston / Jacob Dummeldinger","John Elsner / Tobias Cole",NA,NA,15,11,4,4,8,NA,NA,NA,NA,15,NA,NA
+9,"P9",1,"Pool Play","Pool A",5,1,"Pool play",1,4,"Vergil Weatherford / Conrad Damon","Jordan Huston / Jacob Dummeldinger",NA,NA,15,9,6,1,4,NA,NA,NA,NA,15,NA,NA
+10,"P10",1,"Pool Play","Pool A",5,2,"Pool play",8,9,"John Elsner / Tobias Cole","Diana Elsner / Lindsi Allman",NA,NA,17,15,2,8,9,NA,NA,NA,NA,15,NA,NA
+11,"P11",1,"Pool Play","Pool B",1,3,"Pool play",3,10,"Jim Elsner / Drew Preiss","Fran Flores / Hank Bass",NA,NA,17,15,2,3,10,NA,NA,NA,NA,15,NA,NA
+12,"P12",1,"Pool Play","Pool B",1,4,"Pool play",6,7,"Jay Koonts / Jack Cooksey","Travis Ward / Oscar Patterson",NA,NA,8,15,-7,7,6,NA,NA,NA,NA,15,NA,NA
+13,"P13",1,"Pool Play","Pool B",2,3,"Pool play",10,2,"Fran Flores / Hank Bass","Mike Prost / Scott Schmucker",NA,NA,8,15,-7,2,10,NA,NA,NA,NA,15,NA,NA
+14,"P14",1,"Pool Play","Pool B",2,4,"Pool play",6,3,"Jay Koonts / Jack Cooksey","Jim Elsner / Drew Preiss",NA,NA,12,15,-3,3,6,NA,NA,NA,NA,15,NA,NA
+15,"P15",1,"Pool Play","Pool B",3,3,"Pool play",2,7,"Mike Prost / Scott Schmucker","Travis Ward / Oscar Patterson",NA,NA,14,16,-2,7,2,NA,NA,NA,NA,15,NA,NA
+16,"P16",1,"Pool Play","Pool B",3,4,"Pool play",10,6,"Fran Flores / Hank Bass","Jay Koonts / Jack Cooksey",NA,NA,12,15,-3,6,10,NA,NA,NA,NA,15,NA,NA
+17,"P17",1,"Pool Play","Pool B",4,3,"Pool play",6,2,"Jay Koonts / Jack Cooksey","Mike Prost / Scott Schmucker",NA,NA,9,15,-6,2,6,NA,NA,NA,NA,15,NA,NA
+18,"P18",1,"Pool Play","Pool B",4,4,"Pool play",3,7,"Jim Elsner / Drew Preiss","Travis Ward / Oscar Patterson",NA,NA,15,9,6,3,7,NA,NA,NA,NA,15,NA,NA
+19,"P19",1,"Pool Play","Pool B",5,3,"Pool play",2,3,"Mike Prost / Scott Schmucker","Jim Elsner / Drew Preiss",NA,NA,15,11,4,2,3,NA,NA,NA,NA,15,NA,NA
+20,"P20",1,"Pool Play","Pool B",5,4,"Pool play",7,10,"Travis Ward / Oscar Patterson","Fran Flores / Hank Bass",NA,NA,15,7,8,7,10,NA,NA,NA,NA,15,NA,NA
+21,"W1",2,"Championship Bracket","Top 8 Double Elimination",1,1,"Winners round 1",1,6,"Vergil Weatherford / Conrad Damon","Jay Koonts / Jack Cooksey",NA,NA,10,15,-5,6,1,"seed","1","seed","8",15,NA,NA
+22,"W2",2,"Championship Bracket","Top 8 Double Elimination",1,2,"Winners round 1",4,3,"Jordan Huston / Jacob Dummeldinger","Jim Elsner / Drew Preiss",NA,NA,11,15,-4,3,4,"seed","4","seed","5",15,NA,NA
+23,"W3",2,"Championship Bracket","Top 8 Double Elimination",1,3,"Winners round 1",7,5,"Travis Ward / Oscar Patterson","Jasun Burdick / Drew Magee",NA,NA,12,15,-3,5,7,"seed","3","seed","6",15,NA,NA
+24,"W4",2,"Championship Bracket","Top 8 Double Elimination",1,4,"Winners round 1",2,8,"Mike Prost / Scott Schmucker","John Elsner / Tobias Cole",NA,NA,15,13,2,2,8,"seed","2","seed","7",15,NA,NA
+25,"L1",2,"Championship Bracket","Top 8 Double Elimination",2,1,"Elimination round 1",1,4,"Vergil Weatherford / Conrad Damon","Jordan Huston / Jacob Dummeldinger","Loser W1","Loser W2",15,13,2,1,4,"loser","W1","loser","W2",15,NA,NA
+26,"L2",2,"Championship Bracket","Top 8 Double Elimination",2,2,"Elimination round 1",7,8,"Travis Ward / Oscar Patterson","John Elsner / Tobias Cole","Loser W3","Loser W4",15,7,8,7,8,"loser","W3","loser","W4",15,NA,NA
+27,"W5",2,"Championship Bracket","Top 8 Double Elimination",2,3,"Winners semifinal",6,3,"Jay Koonts / Jack Cooksey","Jim Elsner / Drew Preiss","Winner W1","Winner W2",16,14,2,6,3,"winner","W1","winner","W2",15,NA,NA
+28,"W6",2,"Championship Bracket","Top 8 Double Elimination",2,4,"Winners semifinal",5,2,"Jasun Burdick / Drew Magee","Mike Prost / Scott Schmucker","Winner W3","Winner W4",15,12,3,5,2,"winner","W3","winner","W4",15,NA,NA
+29,"L3",2,"Championship Bracket","Top 8 Double Elimination",3,1,"Elimination round 2",1,2,"Vergil Weatherford / Conrad Damon","Mike Prost / Scott Schmucker","Winner L1","Loser W6",15,9,6,1,2,"winner","L1","loser","W6",15,NA,NA
+30,"L4",2,"Championship Bracket","Top 8 Double Elimination",3,2,"Elimination round 2",7,3,"Travis Ward / Oscar Patterson","Jim Elsner / Drew Preiss","Winner L2","Loser W5",15,11,4,7,3,"winner","L2","loser","W5",15,NA,NA
+31,"W7",2,"Championship Bracket","Top 8 Double Elimination",3,3,"Winners final",6,5,"Jay Koonts / Jack Cooksey","Jasun Burdick / Drew Magee","Winner W5","Winner W6",15,10,5,6,5,"winner","W5","winner","W6",15,NA,NA
+32,"L5",2,"Championship Bracket","Top 8 Double Elimination",4,4,"Elimination semifinal",1,7,"Vergil Weatherford / Conrad Damon","Travis Ward / Oscar Patterson","Winner L3","Winner L4",15,11,4,1,7,"winner","L3","winner","L4",15,NA,NA
+33,"L6",2,"Championship Bracket","Top 8 Double Elimination",5,1,"Elimination final",1,5,"Vergil Weatherford / Conrad Damon","Jasun Burdick / Drew Magee","Winner L5","Loser W7",13,15,-2,5,1,"winner","L5","loser","W7",15,NA,NA
+36,"P9",2,"Placement","Places 9-10",1,1,"9th place match",9,10,"Diana Elsner / Lindsi Allman","Fran Flores / Hank Bass",NA,NA,15,11,4,9,10,"seed","1","seed","2",15,NA,NA
+NA,"GF-1",NA,NA,NA,NA,NA,NA,6,5,"Jay Koonts / Jack Cooksey","Jasun Burdick / Drew Magee",NA,NA,15,21,NA,5,NA,NA,NA,NA,NA,21,"GF",1
+NA,"GF-2",NA,NA,NA,NA,NA,NA,6,5,"Jay Koonts / Jack Cooksey","Jasun Burdick / Drew Magee",NA,NA,19,21,NA,5,NA,NA,NA,NA,NA,21,"GF",2
+NA,"GFR-1",NA,NA,NA,NA,NA,NA,6,5,"Jay Koonts / Jack Cooksey","Jasun Burdick / Drew Magee",NA,NA,21,9,NA,6,NA,NA,NA,NA,NA,21,"GFR",1
+NA,"GFR-2",NA,NA,NA,NA,NA,NA,6,5,"Jay Koonts / Jack Cooksey","Jasun Burdick / Drew Magee",NA,NA,16,21,NA,5,NA,NA,NA,NA,NA,21,"GFR",2
+NA,"GFR-3",NA,NA,NA,NA,NA,NA,6,5,"Jay Koonts / Jack Cooksey","Jasun Burdick / Drew Magee",NA,NA,17,21,NA,5,NA,NA,NA,NA,NA,21,"GFR",3
