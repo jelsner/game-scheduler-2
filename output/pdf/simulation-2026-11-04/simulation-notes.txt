@@ -1,0 +1,6 @@
+SIMULATION ONLY - NOT ACTUAL RESULTS
+Random seed: 20261104.
+Seed-weighted random match results, allowing upsets.
+G24 deliberately goes three games and is won by the lower-bracket finalist to illustrate G25.
+All pool ties resolved statistically; no director decisions needed.
+Generated separately from the live tournament; do not restore this example into your live scoring session.

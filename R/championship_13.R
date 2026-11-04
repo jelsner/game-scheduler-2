@@ -47,13 +47,13 @@ bracket_matches_13 <- function() {
     stringsAsFactors = FALSE)
 }
 
-# A valid final score stops at the first win-by-two result (no cap).
+# A rally awards one or two points. The final rally must be able to reach
+# this win-by-two result from a score at which the game was still undecided.
 valid_game_13 <- function(a, b, target = 15L) {
   length(a) == 1L && length(b) == 1L && is.numeric(a) && is.numeric(b) &&
     !is.na(a) && !is.na(b) && is.finite(a) && is.finite(b) && a >= 0 && b >= 0 &&
     a == floor(a) && b == floor(b) && max(a, b) >= target && abs(a - b) >= 2 &&
-    ((min(a, b) <= target - 2 && max(a, b) == target) ||
-       (min(a, b) >= target - 1 && abs(a - b) == 2))
+    (max(a, b) - 2 < target || abs(a - b) - 2 < 2)
 }
 
 score_outcome_13 <- function(scores, target = 15L, best_of = 1L) {
@@ -63,7 +63,7 @@ score_outcome_13 <- function(scores, target = 15L, best_of = 1L) {
   wins <- c(0L, 0L)
   for (i in seq_len(nrow(scores))) {
     if (max(wins) >= (best_of + 1) / 2) stop("The series was already decided; remove the extra game.", call. = FALSE)
-    if (!valid_game_13(scores[i, 1], scores[i, 2], target)) stop(paste0("Game ", i, ": use a final score to ", target, ", win by two (no cap)."), call. = FALSE)
+    if (!valid_game_13(scores[i, 1], scores[i, 2], target)) stop(paste0("Game ", i, ": use a final score to ", target, ", win by two (no cap). A final double may add two points, but play must stop once the game is won."), call. = FALSE)
     winner <- if (scores[i, 1] > scores[i, 2]) 1L else 2L
     wins[winner] <- wins[winner] + 1L
   }

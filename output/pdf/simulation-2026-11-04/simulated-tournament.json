@@ -1,0 +1,380 @@
+{
+  "version": 1,
+  "roster": "1=Sam K. & Nathan J.|2=Vergil W. & Conrad D.|3=Mike P. & Scott S.|4=Jim E. & Drew P.|5=Jordan H. & Jacob D.|6=Jasun B. & Drew M.|7=Jay K. & Jack C.|8=Hank B. & Richard P.|9=Travis W. & Oscar P.|10=John E. & Tobias C.|11=Dana S. & Blair P.|12=Ian S. & Peter A.|13=Diana E. & Lindsi A.",
+  "results": {
+    "PA1": {
+      "teamA_id": 6,
+      "teamB_id": 13,
+      "scores": [
+        [15, 10]
+      ]
+    },
+    "PA2": {
+      "teamA_id": 7,
+      "teamB_id": 12,
+      "scores": [
+        [15, 12]
+      ]
+    },
+    "PA3": {
+      "teamA_id": 13,
+      "teamB_id": 1,
+      "scores": [
+        [6, 15]
+      ]
+    },
+    "PA4": {
+      "teamA_id": 7,
+      "teamB_id": 6,
+      "scores": [
+        [15, 6]
+      ]
+    },
+    "PA5": {
+      "teamA_id": 1,
+      "teamB_id": 12,
+      "scores": [
+        [15, 7]
+      ]
+    },
+    "PA6": {
+      "teamA_id": 13,
+      "teamB_id": 7,
+      "scores": [
+        [10, 15]
+      ]
+    },
+    "PA7": {
+      "teamA_id": 7,
+      "teamB_id": 1,
+      "scores": [
+        [11, 15]
+      ]
+    },
+    "PA8": {
+      "teamA_id": 6,
+      "teamB_id": 12,
+      "scores": [
+        [13, 15]
+      ]
+    },
+    "PA9": {
+      "teamA_id": 12,
+      "teamB_id": 13,
+      "scores": [
+        [19, 17]
+      ]
+    },
+    "PA10": {
+      "teamA_id": 1,
+      "teamB_id": 6,
+      "scores": [
+        [17, 19]
+      ]
+    },
+    "PB1": {
+      "teamA_id": 2,
+      "teamB_id": 11,
+      "scores": [
+        [15, 11]
+      ]
+    },
+    "PB2": {
+      "teamA_id": 5,
+      "teamB_id": 8,
+      "scores": [
+        [6, 15]
+      ]
+    },
+    "PB3": {
+      "teamA_id": 8,
+      "teamB_id": 2,
+      "scores": [
+        [16, 18]
+      ]
+    },
+    "PB4": {
+      "teamA_id": 5,
+      "teamB_id": 11,
+      "scores": [
+        [16, 14]
+      ]
+    },
+    "PB5": {
+      "teamA_id": 8,
+      "teamB_id": 11,
+      "scores": [
+        [15, 12]
+      ]
+    },
+    "PB6": {
+      "teamA_id": 2,
+      "teamB_id": 5,
+      "scores": [
+        [19, 17]
+      ]
+    },
+    "PC1": {
+      "teamA_id": 3,
+      "teamB_id": 10,
+      "scores": [
+        [19, 17]
+      ]
+    },
+    "PC2": {
+      "teamA_id": 4,
+      "teamB_id": 9,
+      "scores": [
+        [16, 18]
+      ]
+    },
+    "PC3": {
+      "teamA_id": 9,
+      "teamB_id": 3,
+      "scores": [
+        [15, 17]
+      ]
+    },
+    "PC4": {
+      "teamA_id": 4,
+      "teamB_id": 10,
+      "scores": [
+        [19, 17]
+      ]
+    },
+    "PC5": {
+      "teamA_id": 9,
+      "teamB_id": 10,
+      "scores": [
+        [6, 15]
+      ]
+    },
+    "PC6": {
+      "teamA_id": 3,
+      "teamB_id": 4,
+      "scores": [
+        [16, 14]
+      ]
+    },
+    "G1": {
+      "teamA_id": 5,
+      "teamB_id": 4,
+      "scores": [
+        [15, 9]
+      ]
+    },
+    "G2": {
+      "teamA_id": 10,
+      "teamB_id": 13,
+      "scores": [
+        [13, 15]
+      ]
+    },
+    "G3": {
+      "teamA_id": 8,
+      "teamB_id": 6,
+      "scores": [
+        [11, 15]
+      ]
+    },
+    "G4": {
+      "teamA_id": 7,
+      "teamB_id": 11,
+      "scores": [
+        [6, 15]
+      ]
+    },
+    "G5": {
+      "teamA_id": 12,
+      "teamB_id": 9,
+      "scores": [
+        [15, 17]
+      ]
+    },
+    "G6": {
+      "teamA_id": 1,
+      "teamB_id": 5,
+      "scores": [
+        [8, 15]
+      ]
+    },
+    "G7": {
+      "teamA_id": 13,
+      "teamB_id": 6,
+      "scores": [
+        [12, 15]
+      ]
+    },
+    "G8": {
+      "teamA_id": 3,
+      "teamB_id": 11,
+      "scores": [
+        [15, 8]
+      ]
+    },
+    "G9": {
+      "teamA_id": 9,
+      "teamB_id": 2,
+      "scores": [
+        [12, 15]
+      ]
+    },
+    "G13": {
+      "teamA_id": 10,
+      "teamB_id": 8,
+      "scores": [
+        [15, 17]
+      ]
+    },
+    "G10": {
+      "teamA_id": 5,
+      "teamB_id": 6,
+      "scores": [
+        [15, 9]
+      ]
+    },
+    "G11": {
+      "teamA_id": 3,
+      "teamB_id": 2,
+      "scores": [
+        [17, 19]
+      ]
+    },
+    "G14": {
+      "teamA_id": 13,
+      "teamB_id": 4,
+      "scores": [
+        [13, 15]
+      ]
+    },
+    "G15": {
+      "teamA_id": 1,
+      "teamB_id": 8,
+      "scores": [
+        [14, 16]
+      ]
+    },
+    "G16": {
+      "teamA_id": 9,
+      "teamB_id": 7,
+      "scores": [
+        [9, 15]
+      ]
+    },
+    "G17": {
+      "teamA_id": 11,
+      "teamB_id": 12,
+      "scores": [
+        [15, 9]
+      ]
+    },
+    "G12": {
+      "teamA_id": 5,
+      "teamB_id": 2,
+      "scores": [
+        [15, 6]
+      ]
+    },
+    "G18": {
+      "teamA_id": 4,
+      "teamB_id": 8,
+      "scores": [
+        [18, 16]
+      ]
+    },
+    "G19": {
+      "teamA_id": 7,
+      "teamB_id": 11,
+      "scores": [
+        [12, 15]
+      ]
+    },
+    "P1": {
+      "teamA_id": 1,
+      "teamB_id": 13,
+      "scores": [
+        [18, 16]
+      ]
+    },
+    "P2": {
+      "teamA_id": 12,
+      "teamB_id": 9,
+      "scores": [
+        [18, 16]
+      ]
+    },
+    "G20": {
+      "teamA_id": 4,
+      "teamB_id": 3,
+      "scores": [
+        [7, 15]
+      ]
+    },
+    "G21": {
+      "teamA_id": 11,
+      "teamB_id": 6,
+      "scores": [
+        [11, 15]
+      ]
+    },
+    "P3": {
+      "teamA_id": 1,
+      "teamB_id": 12,
+      "scores": [
+        [15, 6]
+      ]
+    },
+    "P4": {
+      "teamA_id": 13,
+      "teamB_id": 9,
+      "scores": [
+        [15, 12]
+      ]
+    },
+    "P5": {
+      "teamA_id": 8,
+      "teamB_id": 7,
+      "scores": [
+        [9, 15]
+      ]
+    },
+    "G22": {
+      "teamA_id": 3,
+      "teamB_id": 6,
+      "scores": [
+        [19, 17]
+      ]
+    },
+    "P6": {
+      "teamA_id": 4,
+      "teamB_id": 11,
+      "scores": [
+        [7, 15]
+      ]
+    },
+    "G23": {
+      "teamA_id": 3,
+      "teamB_id": 2,
+      "scores": [
+        [10, 15]
+      ]
+    },
+    "G24": {
+      "teamA_id": 5,
+      "teamB_id": 2,
+      "scores": [
+        [6, 15],
+        [16, 14],
+        [14, 16]
+      ]
+    },
+    "G25": {
+      "teamA_id": 2,
+      "teamB_id": 5,
+      "scores": [
+        [17, 21]
+      ]
+    }
+  },
+  "ties": []
+}

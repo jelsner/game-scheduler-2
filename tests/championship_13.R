@@ -27,9 +27,27 @@ for (p in c("A", "B", "C")) {
   last <- tail(g, 1)
   stopifnot(setequal(c(last$teamA_id, last$teamB_id), top), last$wave == max(g$wave))
 }
-for (pair in list(c(15,0),c(15,13),c(16,14),c(21,19),c(30,28))) stopifnot(valid_game_13(pair[1],pair[2]))
-for (pair in list(c(15,14),c(16,10),c(17,14),c(10,0),c(-1,15),c(15.5,13),c(NA,15),c(Inf,0))) stopifnot(!valid_game_13(pair[1],pair[2]))
-stopifnot(valid_game_13(21,19,21), !valid_game_13(15,0,21))
+for (pair in list(c(15,0),c(15,13),c(16,0),c(16,10),c(16,13),c(16,14),c(17,14),c(21,19),c(30,28),c(30,27))) {
+  stopifnot(valid_game_13(pair[1],pair[2]),valid_game_13(pair[2],pair[1]))
+}
+for (pair in list(c(15,14),c(17,10),c(17,13),c(18,14),c(30,26),c(10,0),c(-1,15),c(15.5,13),c(NA,15),c(Inf,0))) stopifnot(!valid_game_13(pair[1],pair[2]))
+stopifnot(valid_game_13(21,19,21), valid_game_13(22,10,21), valid_game_13(10,22,21),
+          valid_game_13(23,20,21), !valid_game_13(23,19,21), !valid_game_13(15,0,21))
+# Independently enumerate rallies awarding 1 or 2, stopping at a win. Every
+# reachable terminal score must agree with validation, including extended play.
+for (target in c(15L,21L)) {
+  limit <- 34L
+  reachable <- matrix(FALSE,limit+1L,limit+1L); reachable[1,1] <- TRUE
+  for (a in 0:limit) for (b in 0:limit) {
+    won <- max(a,b) >= target && abs(a-b) >= 2
+    stopifnot(identical(valid_game_13(a,b,target),reachable[a+1,b+1] && won))
+    if (!reachable[a+1,b+1] || won) next
+    for (points in 1:2) {
+      if (a+points <= limit) reachable[a+points+1,b+1] <- TRUE
+      if (b+points <= limit) reachable[a+1,b+points+1] <- TRUE
+    }
+  }
+}
 assert_error(score_outcome_13(rbind(c(15,10)), best_of=3))
 assert_error(score_outcome_13(rbind(c(15,10),c(15,10),c(10,15)), best_of=3))
 stopifnot(score_outcome_13(rbind(c(15,10),c(10,15),c(16,14)), best_of=3)$side == 1)

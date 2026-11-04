@@ -9,10 +9,11 @@ shiny::testServer(server, {
   stopifnot(length(tournament_store_13()$results)==0)
   session$setInputs(scoreA_1 = 15, scoreB_1 = 14, save_score = 1)
   stopifnot(length(tournament_store_13()$results)==0)
-  session$setInputs(scoreB_1 = 12, save_score = 2)
+  session$setInputs(scoreA_1 = 16, scoreB_1 = 10, save_score = 2)
   stopifnot(length(tournament_store_13()$results)==1, file.exists(state_file_13))
   restored <- read_snapshot_13(state_file_13)
   stopifnot(tournament_state_13(restored)$games$status[1]=="Complete")
+  stopifnot(identical(as.numeric(restored$results$PA1$scores),c(16,10)))
   # Showing the clear modal cannot delete a result before confirmation.
   session$setInputs(clear_score = 1, confirm_clear = 0)
   stopifnot(length(tournament_store_13()$results)==1)
@@ -27,11 +28,15 @@ shiny::testServer(server, {
   stopifnot(length(tournament_store_13()$results)==0)
   session$setInputs(confirm_restore = 1)
   stopifnot(all(!is.na(state()$final$team_id)))
+  # The game to 21 also accepts a final double past the target and persists it.
+  session$setInputs(score_stage = "Double elimination", match_key = "G25")
+  session$setInputs(scoreA_1=22,scoreB_1=10,save_score=3)
+  stopifnot(identical(as.numeric(read_snapshot_13(state_file_13)$results$G25$scores),c(22,10)))
   session$setInputs(score_stage = "Double elimination", match_key = "G24")
   html <- as.character(output$score_editor)[1]
   stopifnot(grepl("scoreA_3",html),grepl("Best of three",html))
   # Changing a final from a lower-bracket win to an upper-bracket win clears reset.
-  session$setInputs(scoreA_1=15,scoreB_1=10,scoreA_2=15,scoreB_2=12,scoreA_3=NA_real_,scoreB_3=NA_real_,save_score=3)
+  session$setInputs(scoreA_1=16,scoreB_1=10,scoreA_2=17,scoreB_2=14,scoreA_3=NA_real_,scoreB_3=NA_real_,save_score=4)
   stopifnot(is.null(tournament_store_13()$results$G25),state()$games$status[state()$games$key=="G25"]=="Not needed")
   session$setInputs(match_key="G1",clear_score=2,confirm_clear=0)
   stopifnot(!is.null(tournament_store_13()$results$G1))
