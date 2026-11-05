@@ -63,7 +63,7 @@ write_pool_score_sheet <- function(file, n, team_text = "", pool_name = "") {
   }
 
   label(36, 751, "POOL PLAY SCORE SHEET", 20, TRUE)
-  label(36, 726, sprintf("%d teams  |  %d games  |  Round robin", n, nrow(games)), 11)
+  label(36, 726, sprintf("%d teams  |  %d games  |  Round robin  |  To 21, win by 2", n, nrow(games)), 11)
   label(36, 696, "Event: ____________________________________", 11)
   label(365, 696, "Date: __________________", 11)
   label(36, 670, "Pool:", 11)
@@ -147,6 +147,6 @@ write_pool_reseeding_tally <- function(file) {
   }
   label(28, 68, "Cross out A5, B5 or C5 for four-team pools. Check that earned seeds reuse every original seed exactly once.", 9)
   label(28, 50, "Example: a pool with original seeds 1, 6, 7, 12 awards those slots to its 1st, 2nd, 3rd and 4th finishers, respectively.", 9)
-  label(28, 32, "Within-pool tiebreak reference: doubledisccourt.com/rules/2016/wfdf_rulebook_article_ii.pdf (section 206.03).", 9)
+  label(28, 32, "All games: 21, win by 2, no cap. Within-pool tiebreaks: WFDF Double Disc Court rules, section 204.6.", 9)
   invisible(file)
 }

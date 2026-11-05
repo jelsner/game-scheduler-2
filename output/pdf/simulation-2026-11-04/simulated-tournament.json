@@ -6,366 +6,366 @@
       "teamA_id": 6,
       "teamB_id": 13,
       "scores": [
-        [15, 10]
+        [21, 16]
       ]
     },
     "PA2": {
       "teamA_id": 7,
       "teamB_id": 12,
       "scores": [
-        [15, 12]
+        [21, 18]
       ]
     },
     "PA3": {
       "teamA_id": 13,
       "teamB_id": 1,
       "scores": [
-        [6, 15]
+        [12, 21]
       ]
     },
     "PA4": {
       "teamA_id": 7,
       "teamB_id": 6,
       "scores": [
-        [15, 6]
+        [21, 12]
       ]
     },
     "PA5": {
       "teamA_id": 1,
       "teamB_id": 12,
       "scores": [
-        [15, 7]
+        [21, 13]
       ]
     },
     "PA6": {
       "teamA_id": 13,
       "teamB_id": 7,
       "scores": [
-        [10, 15]
+        [16, 21]
       ]
     },
     "PA7": {
       "teamA_id": 7,
       "teamB_id": 1,
       "scores": [
-        [11, 15]
+        [17, 21]
       ]
     },
     "PA8": {
       "teamA_id": 6,
       "teamB_id": 12,
       "scores": [
-        [13, 15]
+        [19, 21]
       ]
     },
     "PA9": {
       "teamA_id": 12,
       "teamB_id": 13,
       "scores": [
-        [19, 17]
+        [25, 23]
       ]
     },
     "PA10": {
       "teamA_id": 1,
       "teamB_id": 6,
       "scores": [
-        [17, 19]
+        [23, 25]
       ]
     },
     "PB1": {
       "teamA_id": 2,
       "teamB_id": 11,
       "scores": [
-        [15, 11]
+        [21, 17]
       ]
     },
     "PB2": {
       "teamA_id": 5,
       "teamB_id": 8,
       "scores": [
-        [6, 15]
+        [12, 21]
       ]
     },
     "PB3": {
       "teamA_id": 8,
       "teamB_id": 2,
       "scores": [
-        [16, 18]
+        [22, 24]
       ]
     },
     "PB4": {
       "teamA_id": 5,
       "teamB_id": 11,
       "scores": [
-        [16, 14]
+        [22, 20]
       ]
     },
     "PB5": {
       "teamA_id": 8,
       "teamB_id": 11,
       "scores": [
-        [15, 12]
+        [21, 18]
       ]
     },
     "PB6": {
       "teamA_id": 2,
       "teamB_id": 5,
       "scores": [
-        [19, 17]
+        [25, 23]
       ]
     },
     "PC1": {
       "teamA_id": 3,
       "teamB_id": 10,
       "scores": [
-        [19, 17]
+        [25, 23]
       ]
     },
     "PC2": {
       "teamA_id": 4,
       "teamB_id": 9,
       "scores": [
-        [16, 18]
+        [22, 24]
       ]
     },
     "PC3": {
       "teamA_id": 9,
       "teamB_id": 3,
       "scores": [
-        [15, 17]
+        [21, 23]
       ]
     },
     "PC4": {
       "teamA_id": 4,
       "teamB_id": 10,
       "scores": [
-        [19, 17]
+        [25, 23]
       ]
     },
     "PC5": {
       "teamA_id": 9,
       "teamB_id": 10,
       "scores": [
-        [6, 15]
+        [12, 21]
       ]
     },
     "PC6": {
       "teamA_id": 3,
       "teamB_id": 4,
       "scores": [
-        [16, 14]
+        [22, 20]
       ]
     },
     "G1": {
       "teamA_id": 5,
       "teamB_id": 4,
       "scores": [
-        [15, 9]
+        [21, 15]
       ]
     },
     "G2": {
       "teamA_id": 10,
       "teamB_id": 13,
       "scores": [
-        [13, 15]
+        [19, 21]
       ]
     },
     "G3": {
       "teamA_id": 8,
       "teamB_id": 6,
       "scores": [
-        [11, 15]
+        [17, 21]
       ]
     },
     "G4": {
       "teamA_id": 7,
       "teamB_id": 11,
       "scores": [
-        [6, 15]
+        [12, 21]
       ]
     },
     "G5": {
       "teamA_id": 12,
       "teamB_id": 9,
       "scores": [
-        [15, 17]
+        [21, 23]
       ]
     },
     "G6": {
       "teamA_id": 1,
       "teamB_id": 5,
       "scores": [
-        [8, 15]
+        [14, 21]
       ]
     },
     "G7": {
       "teamA_id": 13,
       "teamB_id": 6,
       "scores": [
-        [12, 15]
+        [18, 21]
       ]
     },
     "G8": {
       "teamA_id": 3,
       "teamB_id": 11,
       "scores": [
-        [15, 8]
+        [21, 14]
       ]
     },
     "G9": {
       "teamA_id": 9,
       "teamB_id": 2,
       "scores": [
-        [12, 15]
+        [18, 21]
       ]
     },
     "G13": {
       "teamA_id": 10,
       "teamB_id": 8,
       "scores": [
-        [15, 17]
+        [21, 23]
       ]
     },
     "G10": {
       "teamA_id": 5,
       "teamB_id": 6,
       "scores": [
-        [15, 9]
+        [21, 15]
       ]
     },
     "G11": {
       "teamA_id": 3,
       "teamB_id": 2,
       "scores": [
-        [17, 19]
+        [23, 25]
       ]
     },
     "G14": {
       "teamA_id": 13,
       "teamB_id": 4,
       "scores": [
-        [13, 15]
+        [19, 21]
       ]
     },
     "G15": {
       "teamA_id": 1,
       "teamB_id": 8,
       "scores": [
-        [14, 16]
+        [20, 22]
       ]
     },
     "G16": {
       "teamA_id": 9,
       "teamB_id": 7,
       "scores": [
-        [9, 15]
+        [15, 21]
       ]
     },
     "G17": {
       "teamA_id": 11,
       "teamB_id": 12,
       "scores": [
-        [15, 9]
+        [21, 15]
       ]
     },
     "G12": {
       "teamA_id": 5,
       "teamB_id": 2,
       "scores": [
-        [15, 6]
+        [21, 12]
       ]
     },
     "G18": {
       "teamA_id": 4,
       "teamB_id": 8,
       "scores": [
-        [18, 16]
+        [24, 22]
       ]
     },
     "G19": {
       "teamA_id": 7,
       "teamB_id": 11,
       "scores": [
-        [12, 15]
+        [18, 21]
       ]
     },
     "P1": {
       "teamA_id": 1,
       "teamB_id": 13,
       "scores": [
-        [18, 16]
+        [24, 22]
       ]
     },
     "P2": {
       "teamA_id": 12,
       "teamB_id": 9,
       "scores": [
-        [18, 16]
+        [24, 22]
       ]
     },
     "G20": {
       "teamA_id": 4,
       "teamB_id": 3,
       "scores": [
-        [7, 15]
+        [13, 21]
       ]
     },
     "G21": {
       "teamA_id": 11,
       "teamB_id": 6,
       "scores": [
-        [11, 15]
+        [17, 21]
       ]
     },
     "P3": {
       "teamA_id": 1,
       "teamB_id": 12,
       "scores": [
-        [15, 6]
+        [21, 12]
       ]
     },
     "P4": {
       "teamA_id": 13,
       "teamB_id": 9,
       "scores": [
-        [15, 12]
+        [21, 18]
       ]
     },
     "P5": {
       "teamA_id": 8,
       "teamB_id": 7,
       "scores": [
-        [9, 15]
+        [15, 21]
       ]
     },
     "G22": {
       "teamA_id": 3,
       "teamB_id": 6,
       "scores": [
-        [19, 17]
+        [25, 23]
       ]
     },
     "P6": {
       "teamA_id": 4,
       "teamB_id": 11,
       "scores": [
-        [7, 15]
+        [13, 21]
       ]
     },
     "G23": {
       "teamA_id": 3,
       "teamB_id": 2,
       "scores": [
-        [10, 15]
+        [16, 21]
       ]
     },
     "G24": {
       "teamA_id": 5,
       "teamB_id": 2,
       "scores": [
-        [6, 15],
-        [16, 14],
-        [14, 16]
+        [12, 21],
+        [22, 20],
+        [20, 22]
       ]
     },
     "G25": {

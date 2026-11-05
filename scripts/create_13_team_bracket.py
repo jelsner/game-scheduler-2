@@ -167,7 +167,7 @@ def create():
             text(x + 3, y - HEIGHT / 2 - 11, 'Winner -> G24 (W23)', 8, True)
     text(600, 614, 'Seeds 1, 2 and 3 receive', 9)
     text(600, 601, 'opening-round byes.', 9)
-    text(790, 643, 'Best of 3 to 15, win by 2. Scores: 1 / 2 / 3.', 8)
+    text(790, 643, 'Best of 3 to 21, win by 2. Scores: 1 / 2 / 3.', 8)
     text(790, 549, 'Reset: one game to 21, win by 2.', 9, True)
     text(790, 535, 'Play only if W23 wins the G24 series.', 8.5)
     # Lower byes are collapsed to source labels rather than fictitious games.
@@ -192,8 +192,8 @@ def create():
     for y, label in [(421, 'Wave 9 / G25: only if needed.'),
                      (396, 'Start each wave after the previous'), (383, 'wave finishes. Allow agreed rest'), (370, 'between games; no fixed times set.'),
                      (347, 'SCORING'),
-                     (333, 'Standard: one game to 15, win by 2.'),
-                     (319, 'G24: best of 3 games to 15,'),
+                     (333, 'Standard: one game to 21, win by 2.'),
+                     (319, 'G24: best of 3 games to 21,'),
                      (306, 'each game win by 2.'),
                      (292, 'G25: one game to 21, win by 2.'),
                      (270, 'W# / L# = winner / loser of game #.'),

@@ -35,7 +35,7 @@ write_pool_pdfs_13 <- function(file, state, snapshot) {
     courts <- sort(unique(games$court)); rounds <- sort(unique(games$wave))
     pdf_label_13(36, 751, paste("POOL", p, "- SCORE SHEET"), 21, TRUE)
     pdf_label_13(36, 726, pdf_stamp_13(), 8)
-    pdf_label_13(36, 705, paste0(n, " teams | ", nrow(games), " games | Courts ", paste(courts, collapse = " and "), " | To 15, win by 2"), 11)
+    pdf_label_13(36, 705, paste0(n, " teams | ", nrow(games), " games | Courts ", paste(courts, collapse = " and "), " | To 21, win by 2"), 11)
     pdf_label_13(36, 681, "TEAMS IN POOL SEED ORDER", 11, TRUE)
     pdf_row_13(36, 667, c(64, 80, 396), c("Pool seed", "Original seed", "Team / players"), 24, TRUE)
     y <- 643
@@ -96,7 +96,7 @@ write_tally_pdf_13 <- function(file, state) {
   }
   pdf_label_13(28, 65, "Check: earned seeds reuse every original overall seed exactly once. Original seeds stay unchanged on the roster.", 9)
   pdf_label_13(28, 47, "Pool A slots: 1, 6, 7, 12, 13 | Pool B slots: 2, 5, 8, 11 | Pool C slots: 3, 4, 9, 10", 9)
-  pdf_label_13(28, 29, "Initial seed order: usddc2026.com (ranking snapshot October 28, 2026).", 8)
+  pdf_label_13(28, 29, "All games: 21, win by 2, no cap. Initial seed order: usddc2026.com (ranking snapshot October 28, 2026).", 8)
 }
 
 write_bracket_pdf_13 <- function(file, state, snapshot) {
@@ -110,7 +110,7 @@ write_bracket_pdf_13 <- function(file, state, snapshot) {
     pdf_label_13(28, 575, title, 18, TRUE)
     pdf_label_13(28, 554, pdf_stamp_13(), 8)
     pdf_label_13(28, 536, "13 teams | W# / L# = winner / loser of game # | C = court | Wv = wave", 9)
-    pdf_label_13(28, 20, "US Letter landscape, actual size. Print both pages single-sided. Standard games: 15, win by 2.", 8)
+    pdf_label_13(28, 20, "US Letter landscape, actual size. Print both pages single-sided. Standard games: 21, win by 2.", 8)
     pdf_label_13(710, 20, paste("Page", page, "of 2"), 8)
   }
   box <- function(key, x, y, width = 170, caption = NULL) {
@@ -168,14 +168,14 @@ write_bracket_pdf_13 <- function(file, state, snapshot) {
   for (i in 1:4) pdf_label_13(c(28,213,398,583)[i], 522, headings[i], 10, TRUE)
   destinations <- c(14,13,13,16,17,15,14,17,16,21,20,23)
   for (key in names(pos)) box(key, pos[[key]][1], pos[[key]][2], caption = paste0("Loser -> G", destinations[as.integer(substring(key, 2))], " on page 2"))
-  for (i in seq_along(c("Seeds 1, 2 and 3 receive", "opening-round byes.", "", "Standard: 15, win by 2."))) pdf_label_13(583, 493-(i-1)*14, c("Seeds 1, 2 and 3 receive", "opening-round byes.", "", "Standard: 15, win by 2.")[i], 9)
+  for (i in seq_along(c("Seeds 1, 2 and 3 receive", "opening-round byes.", "", "Standard: 21, win by 2."))) pdf_label_13(583, 493-(i-1)*14, c("Seeds 1, 2 and 3 receive", "opening-round byes.", "", "Standard: 21, win by 2.")[i], 9)
   pdf_label_13(583, 430, "Use earned bracket seeds.", 9)
   pdf_label_13(583, 416, "Keep them fixed in this stage.", 9)
   pdf_label_13(583, 307, "W12 -> G24 below.", 9, TRUE)
   pdf_label_13(398, 191, "CHAMPIONSHIP SERIES", 10, TRUE); pdf_label_13(583, 191, "RESET (IF NEEDED)", 10, TRUE)
   box("G24", 398, 142); box("G25", 583, 142)
   line(568,142,583,142); arrow(583,142)
-  pdf_label_13(398, 103, "Best of 3 to 15, each win by 2.", 8.5); pdf_label_13(583, 103, "One game to 21, win by 2.", 8.5)
+  pdf_label_13(398, 103, "Best of 3 to 21, each win by 2.", 8.5); pdf_label_13(583, 103, "One game to 21, win by 2.", 8.5)
   pdf_label_13(398, 86, "W23 comes from page 2. Play G25 only if W23 wins the G24 series.", 8.3)
   pdf_label_13(398, 73, "G24 boxes: game 1 / 2 / 3. W24 and L24 mean the series result.", 8)
   for (place in 1:2) {
@@ -206,7 +206,7 @@ write_bracket_pdf_13 <- function(file, state, snapshot) {
   }
   pdf_label_13(653,338,"W23 -> G24 on page 1",8,TRUE)
   for (i in 1:3) pdf_label_13(28,c(490,354,286)[i],c("L1 -> G14","L4 -> G16","L5 -> G17")[i],9)
-  pdf_label_13(28,228,"PLACEMENT GAMES - ONE GAME TO 15, WIN BY 2",11,TRUE)
+  pdf_label_13(28,228,"PLACEMENT GAMES - ONE GAME TO 21, WIN BY 2",11,TRUE)
   pdf_label_13(28,209,"9TH-12TH MINI BRACKET",9,TRUE); pdf_label_13(398,209,"7TH / 8TH",9,TRUE); pdf_label_13(583,209,"5TH / 6TH",9,TRUE)
   pp <- list(P1=c(28,177),P2=c(28,99),P3=c(213,177),P4=c(213,99))
   connect(pp,150)
