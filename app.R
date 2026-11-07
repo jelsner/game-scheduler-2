@@ -161,8 +161,15 @@ server <- function(input, output, session) {
   observe({
     games <- state()$games
     games <- games[games$stage == active_stage() & games$status %in% c("Ready", "Complete"), ]
-    games <- games[order(games$wave, games$court), ]
+    games <- if (active_stage() == "Pool play") {
+      games[order(games$pool, games$wave, games$court), ]
+    } else games[order(games$wave, games$court), ]
     choices <- setNames(games$key, paste0(games$key, " | ", games$teamA, " vs ", games$teamB, " [", games$status, "]"))
+    if (active_stage() == "Pool play") {
+      pool_groups <- split(seq_len(nrow(games)), games$pool)
+      choices <- setNames(lapply(pool_groups, function(rows) choices[rows]),
+                          paste("Pool", names(pool_groups)))
+    }
     current <- isolate(input$match_key)
     selected <- if (length(current) == 1L && !is.na(current) && current %in% games$key) current else {
       next_ready <- games$key[games$status == "Ready"]
