@@ -8,7 +8,7 @@ add_ready_results <- function(snapshot, stages, wave = NULL) {
   if (!is.null(wave)) games <- games[games$wave == wave, ]
   for (i in seq_len(nrow(games))) {
     g <- games[i, ]
-    scores <- matrix(if (g$teamA_id < g$teamB_id) c(15,10) else c(10,15), nrow=1)
+    scores <- matrix(if (g$teamA_id < g$teamB_id) c(21,10) else c(10,21), nrow=1)
     snapshot$results[[g$key]] <- list(teamA_id=g$teamA_id,teamB_id=g$teamB_id,scores=scores)
   }
   snapshot
@@ -27,7 +27,7 @@ shiny::testServer(server, {
   stopifnot(active_stage()=="Pool play",grepl("Placement games are not ready",as.character(output$stage_notice)[1]),
             grepl("Choose a ready",as.character(output$score_editor)[1]))
   # The rejected navigation cannot terminate the session: pool scoring still works.
-  session$setInputs(score_stage="Pool play",match_key="PA1",scoreA_1=15,scoreB_1=12,save_score=1)
+  session$setInputs(score_stage="Pool play",match_key="PA1",scoreA_1=21,scoreB_1=12,save_score=1)
   stopifnot(length(tournament_store_13()$results)==1)
   session$setInputs(score_stage="Double elimination")
   stopifnot(grepl("21 pool matches",as.character(output$stage_notice)[1]),!is.null(tournament_store_13()$results$PA1))
@@ -37,7 +37,7 @@ shiny::testServer(server, {
   for (i in seq_len(nrow(pool_games))) {
     g <- pool_games[i, ]; ids <- c(g$teamA_id,g$teamB_id)
     winner <- if (10 %in% ids) setdiff(ids,10) else if (setequal(ids,c(3,4))) 3L else if (setequal(ids,c(4,9))) 4L else 9L
-    sc <- if (10 %in% ids) c(15,0) else c(15,10)
+    sc <- if (10 %in% ids) c(21,0) else c(21,10)
     if (winner==ids[2]) sc <- rev(sc)
     tied$results[[g$key]] <- list(teamA_id=ids[1],teamB_id=ids[2],scores=matrix(sc,nrow=1))
   }
@@ -51,7 +51,7 @@ shiny::testServer(server, {
   before <- tournament_store_13()
   session$setInputs(save_score=2,clear_score=1)
   stopifnot(identical(before,tournament_store_13())) # stale pool key cannot be saved/cleared in bracket stage
-  session$setInputs(match_key="G1",scoreA_1=15,scoreB_1=10,save_score=3)
+  session$setInputs(match_key="G1",scoreA_1=21,scoreB_1=10,save_score=3)
   stopifnot(!is.null(tournament_store_13()$results$G1))
   session$setInputs(score_stage="Placement")
   stopifnot(active_stage()=="Double elimination",grepl("not ready",as.character(output$stage_notice)[1]),
@@ -68,7 +68,7 @@ shiny::testServer(server, {
   tournament_store_13(empty_tournament())
   session$flushReact()
   stopifnot(active_stage()=="Pool play",grepl("not ready",as.character(output$stage_notice)[1]))
-  session$setInputs(score_stage="Pool play",match_key="PA1",scoreA_1=15,scoreB_1=9,save_score=4)
+  session$setInputs(score_stage="Pool play",match_key="PA1",scoreA_1=21,scoreB_1=9,save_score=4)
   stopifnot(length(tournament_store_13()$results)==1)
 })
 unlink(state_file_13)

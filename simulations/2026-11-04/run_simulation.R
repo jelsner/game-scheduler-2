@@ -5,21 +5,6 @@ source("R/us_championship_engine.R")
 source("R/championship_13.R")
 source("R/championship_pdfs.R")
 
-# Preview the agreed 21-point format in this isolated simulation. The app's
-# live scoring model and any previously saved practice scores are untouched.
-original_pool_matches <- pool_matches_13
-pool_matches_13 <- function(teams = championship_teams()) {
-  games <- original_pool_matches(teams)
-  games$target <- 21L
-  games
-}
-original_bracket_matches <- bracket_matches_13
-bracket_matches_13 <- function() {
-  games <- original_bracket_matches()
-  games$target <- 21L
-  games
-}
-
 out <- "output/pdf/simulation-2026-11-04"
 dir.create(out, recursive = TRUE, showWarnings = FALSE)
 live_file <- "data/tournament-state.json"

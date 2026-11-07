@@ -30,11 +30,11 @@ The app does not invent forfeit scores; a forfeit requires a director ruling.
 
 All 13 teams then enter the seeded double-elimination bracket. Seeds 1-3 get
 opening byes. The bracket and six-court wave plan match the agreed paper draw.
-Standard matches are one game to 15, win by two, no cap. G24 is best of three
-games to 15, each win by two. If the lower-bracket finalist wins that series,
+Standard matches are one game to 21, win by two, no cap. G24 is best of three
+games to 21, each win by two. If the lower-bracket finalist wins that series,
 G25 is one game to 21, win by two; otherwise G25 is not played.
-A final double awards both points: 16-10 or 17-14 is valid in a game to 15,
-and 22-10 is valid in a game to 21. Play stops at the first winning rally.
+A final double awards both points: 22-10 or 23-20 is valid in a game to 21.
+Play stops at the first winning rally.
 
 Placement matches determine every final position:
 

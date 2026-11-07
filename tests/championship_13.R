@@ -6,7 +6,7 @@ source("R/championship_pdfs.R")
 assert_error <- function(expr) stopifnot(inherits(try(force(expr), silent = TRUE), "try-error"))
 record_for <- function(g, winner = g$teamA_id, third = FALSE) {
   sc <- if (g$best_of == 3L) {
-    if (third) rbind(c(15, 10), c(10, 15), c(15, 13)) else rbind(c(15, 10), c(15, 11))
+    if (third) rbind(c(21, 10), c(10, 21), c(21, 19)) else rbind(c(21, 10), c(21, 11))
   } else matrix(c(g$target, 10), nrow = 1)
   if (winner == g$teamB_id) sc <- sc[, c(2,1), drop = FALSE]
   list(teamA_id = g$teamA_id, teamB_id = g$teamB_id, scores = sc)
@@ -27,12 +27,14 @@ for (p in c("A", "B", "C")) {
   last <- tail(g, 1)
   stopifnot(setequal(c(last$teamA_id, last$teamB_id), top), last$wave == max(g$wave))
 }
-for (pair in list(c(15,0),c(15,13),c(16,0),c(16,10),c(16,13),c(16,14),c(17,14),c(21,19),c(30,28),c(30,27))) {
+# Default scoring is 21 in every stage, with a best-of-three championship.
+stopifnot(all(start$games$target == 21L),
+          start$games$best_of[start$games$key == "G24"] == 3L,
+          all(start$games$best_of[start$games$key != "G24"] == 1L))
+for (pair in list(c(21,0),c(21,19),c(22,0),c(22,10),c(22,19),c(22,20),c(23,20),c(30,28),c(30,27))) {
   stopifnot(valid_game_13(pair[1],pair[2]),valid_game_13(pair[2],pair[1]))
 }
-for (pair in list(c(15,14),c(17,10),c(17,13),c(18,14),c(30,26),c(10,0),c(-1,15),c(15.5,13),c(NA,15),c(Inf,0))) stopifnot(!valid_game_13(pair[1],pair[2]))
-stopifnot(valid_game_13(21,19,21), valid_game_13(22,10,21), valid_game_13(10,22,21),
-          valid_game_13(23,20,21), !valid_game_13(23,19,21), !valid_game_13(15,0,21))
+for (pair in list(c(15,10),c(16,10),c(21,20),c(23,10),c(23,19),c(24,20),c(30,26),c(10,0),c(-1,21),c(21.5,19),c(NA,21),c(Inf,0))) stopifnot(!valid_game_13(pair[1],pair[2]))
 # Independently enumerate rallies awarding 1 or 2, stopping at a win. Every
 # reachable terminal score must agree with validation, including extended play.
 for (target in c(15L,21L)) {
@@ -48,9 +50,9 @@ for (target in c(15L,21L)) {
     }
   }
 }
-assert_error(score_outcome_13(rbind(c(15,10)), best_of=3))
-assert_error(score_outcome_13(rbind(c(15,10),c(15,10),c(10,15)), best_of=3))
-stopifnot(score_outcome_13(rbind(c(15,10),c(10,15),c(16,14)), best_of=3)$side == 1)
+assert_error(score_outcome_13(rbind(c(21,10)), best_of=3))
+assert_error(score_outcome_13(rbind(c(21,10),c(21,10),c(10,21)), best_of=3))
+stopifnot(score_outcome_13(rbind(c(21,10),c(10,21),c(22,20)), best_of=3)$side == 1)
 
 # Seed 6 wins Pool A; it earns seed 1, and the original seed remains 6.
 base <- empty_tournament()
@@ -70,7 +72,7 @@ tied <- base
 for (i in which(start$games$pool == "C")) {
   g <- start$games[i, ]; ids <- c(g$teamA_id,g$teamB_id)
   winner <- if (10 %in% ids) setdiff(ids,10) else if (setequal(ids,c(3,4))) 3L else if (setequal(ids,c(4,9))) 4L else 9L
-  sc <- if (10 %in% ids) c(15,0) else c(15,10)
+  sc <- if (10 %in% ids) c(21,0) else c(21,10)
   if (winner == ids[2]) sc <- rev(sc)
   tied$results[[g$key]] <- list(teamA_id=ids[1],teamB_id=ids[2],scores=matrix(sc,nrow=1))
 }
@@ -119,7 +121,7 @@ cleared <- save_result_13(finished,"G1")
 stopifnot(is.null(cleared$results$G6), is.null(cleared$results$G14), is.null(cleared$results$G24), is.null(cleared$results$P1))
 # A correction with the same winner preserves legitimately completed downstream matches.
 g <- state$games[state$games$key=="G1", ]; old_winner <- g$winner_id
-sc <- matrix(if (old_winner==g$teamA_id) c(15,8) else c(8,15),nrow=1)
+sc <- matrix(if (old_winner==g$teamA_id) c(21,8) else c(8,21),nrow=1)
 unchanged <- save_result_13(finished,"G1",sc)
 stopifnot(length(unchanged$results) == length(finished$results))
 # A pool correction clears all earned seeds/descendants if it makes the pool incomplete.

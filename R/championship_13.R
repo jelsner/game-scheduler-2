@@ -23,7 +23,7 @@ pool_matches_13 <- function(teams = championship_teams()) {
       wave = rr$round, court = rep(seq_len(2), nrow(rr) / 2) + match(p, c("A", "B", "C")) * 2 - 2,
       sourceA = paste("Pool seed", rr$team1), sourceB = paste("Pool seed", rr$team2),
       teamA_id = pool$team_id[rr$team1], teamB_id = pool$team_id[rr$team2],
-      target = 15L, best_of = 1L, stringsAsFactors = FALSE)
+      target = 21L, best_of = 1L, stringsAsFactors = FALSE)
   }))
 }
 
@@ -43,20 +43,20 @@ bracket_matches_13 <- function() {
     wave = c(assignments$wave, 4, 4, 5, 5, 5, 6), court = c(assignments$court, 4, 5, 3, 4, 5, 2),
     sourceA = vapply(pairs, `[`, "", 1), sourceB = vapply(pairs, `[`, "", 2),
     teamA_id = NA_integer_, teamB_id = NA_integer_,
-    target = c(rep(15L, 24), 21L, rep(15L, 6)), best_of = c(rep(1L, 23), 3L, rep(1L, 7)),
+    target = rep(21L, 31), best_of = c(rep(1L, 23), 3L, rep(1L, 7)),
     stringsAsFactors = FALSE)
 }
 
 # A rally awards one or two points. The final rally must be able to reach
 # this win-by-two result from a score at which the game was still undecided.
-valid_game_13 <- function(a, b, target = 15L) {
+valid_game_13 <- function(a, b, target = 21L) {
   length(a) == 1L && length(b) == 1L && is.numeric(a) && is.numeric(b) &&
     !is.na(a) && !is.na(b) && is.finite(a) && is.finite(b) && a >= 0 && b >= 0 &&
     a == floor(a) && b == floor(b) && max(a, b) >= target && abs(a - b) >= 2 &&
     (max(a, b) - 2 < target || abs(a - b) - 2 < 2)
 }
 
-score_outcome_13 <- function(scores, target = 15L, best_of = 1L) {
+score_outcome_13 <- function(scores, target = 21L, best_of = 1L) {
   if (!is.matrix(scores)) scores <- as.matrix(scores)
   if (!is.numeric(scores) || ncol(scores) != 2L || !nrow(scores) || anyNA(scores)) stop("Enter both scores for every played game.", call. = FALSE)
   if (nrow(scores) > best_of) stop("Too many games for this match.", call. = FALSE)

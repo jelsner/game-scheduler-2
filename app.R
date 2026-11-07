@@ -66,7 +66,7 @@ ui <- fluidPage(
           p("Pool finish determines which of that pool's original overall seed slots a team earns. Other pools' records are never compared."),
           DTOutput("tally"), uiOutput("ties_view"))),
         tabPanel("Bracket", div(class = "panel-card", h3("Double elimination"),
-          p("Seeds 1-3 receive opening byes. G24 is best of three to 15; G25 is one game to 21, only if the lower-bracket finalist wins G24. All games win by two."),
+          p("Seeds 1-3 receive opening byes. G24 is best of three to 21; G25 is one game to 21, only if the lower-bracket finalist wins G24. All games win by two."),
           p("A wave starts games together on separate courts. Start the next wave after the previous one finishes, allowing the agreed rest period."),
           DTOutput("bracket"))),
         tabPanel("Placement", div(class = "panel-card", h3("Final position games"),
@@ -85,7 +85,7 @@ ui <- fluidPage(
         tabPanel("Teams & rules", div(class = "panel-card", h3("Registered teams and initial seeds"),
           DTOutput("roster"),
           p("Roster and initial seed order: ", tags$a("usddc2026.com", href = "https://usddc2026.com/", target = "_blank"), "; ranking snapshot published October 28, 2026. No network connection is needed to score."),
-          p("Standard and placement matches: one game to 15, win by two, no cap. Championship: best of three to 15, each win by two. Reset: one game to 21, win by two, no cap. Byes are not games."),
+          p("Standard and placement matches: one game to 21, win by two, no cap. Championship: best of three to 21, each win by two. Reset: one game to 21, win by two, no cap. Byes are not games."),
           p("Within-pool tiebreaks use tied-team record, tied-team point difference, record against teams above the tied group, point difference against those teams, then overall pool point difference (WFDF 206.03, assuming no forfeits). Unresolved ties require an organizer decision before bracket seeds are released. Forfeits require a director ruling; do not enter invented scores.")))
       )
     )
@@ -182,7 +182,7 @@ server <- function(input, output, session) {
     tagList(
       h4(paste(g$teamA, "vs", g$teamB)),
       p(paste0(if (g$stage == "Pool play") "Round " else "Wave ", g$wave, " | Court ", g$court,
-               if (g$best_of == 3) " | Best of three to 15, win by two" else paste0(" | To ", g$target, ", win by two"))),
+               if (g$best_of == 3) " | Best of three to 21, win by two" else paste0(" | To ", g$target, ", win by two"))),
       if (g$best_of == 3) helpText("Enter each game's points. Leave game 3 blank after a 2-0 series."),
       lapply(seq_len(g$best_of), function(i) div(class = "score-game",
         if (g$best_of == 3) strong(paste("Game", i)),
