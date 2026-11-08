@@ -99,6 +99,10 @@ and asks before replacing the current tournament. Backups include individual
 series-game scores and director tie decisions. Malformed/incompatible backups
 are rejected. Backups also identify the roster: scored backups from an earlier
 roster cannot be applied to replacement teams. Empty older backups are accepted.
+An adjusted bracket draw can carry an explicit S1-S13 team order in a version 2
+backup. Restoring and subsequent saves preserve that order without changing pool
+scores or finishing order. A banner identifies the adjusted seeds. Older app
+versions reject these backups rather than silently discard the adjustment.
 If an existing local save is corrupt, startup reports the error
 rather than overwriting it.
 

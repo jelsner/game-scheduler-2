@@ -58,6 +58,7 @@ ui <- fluidPage(
       actionButton("review_restore", "Review restore"),
       p(class = "muted", "This app is a tournament scoring desk. Use one scoring operator and one server process.")),
     mainPanel(width = 8,
+      uiOutput("bracket_seed_notice"),
       textOutput("progress", container = function(...) div(class = "progress-note", ...)),
       tabsetPanel(id = "main_tab",
         tabPanel("Pools", value = "pools", uiOutput("pools_view")),
@@ -96,6 +97,16 @@ server <- function(input, output, session) {
   save_status <- reactiveVal("")
   pending_restore <- reactiveVal(NULL)
   state <- reactive(tournament_state_13(tournament_store_13()))
+  output$bracket_seed_notice <- renderUI({
+    tally <- state()$tally
+    changed <- tally[!is.na(tally$earned_seed) & tally$earned_seed != tally$pool_earned_seed, ]
+    if (!nrow(changed)) return(NULL)
+    changed <- changed[order(changed$earned_seed), ]
+    div(class = "alert alert-warning", role = "status",
+        paste0("Bracket seed adjustment loaded: ",
+               paste0("S", changed$earned_seed, " = ", changed$team, collapse = "; "),
+               ". Pool scores and finishing order are unchanged."))
+  })
   active_stage <- reactiveVal("Pool play")
   blocked_stage <- reactiveVal(NULL)
   stage_problem <- function(stage, tournament) {

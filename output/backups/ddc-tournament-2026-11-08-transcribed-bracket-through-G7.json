@@ -1,0 +1,211 @@
+{
+  "version": 2,
+  "roster": "1=Sam K. & Nathan J.|2=Vergil W. & Conrad D.|3=Mike P. & Scott S.|4=Jim E. & Drew P.|5=Jordan H. & Jacob D.|6=Jasun B. & Drew M.|7=Jay K. & Jack C.|8=Hank B. & Richard P.|9=Travis W. & Oscar P.|10=John E. & Tobias C.|11=Dana S. & Blair P.|12=Ian S. & Peter A.|13=Diana E. & Lindsi A.",
+  "results": {
+    "PC1": {
+      "teamA_id": 3,
+      "teamB_id": 10,
+      "scores": [
+        [21, 9]
+      ]
+    },
+    "PC2": {
+      "teamA_id": 4,
+      "teamB_id": 9,
+      "scores": [
+        [21, 9]
+      ]
+    },
+    "PC3": {
+      "teamA_id": 9,
+      "teamB_id": 3,
+      "scores": [
+        [8, 21]
+      ]
+    },
+    "PC4": {
+      "teamA_id": 4,
+      "teamB_id": 10,
+      "scores": [
+        [21, 10]
+      ]
+    },
+    "PC6": {
+      "teamA_id": 3,
+      "teamB_id": 4,
+      "scores": [
+        [21, 8]
+      ]
+    },
+    "PC5": {
+      "teamA_id": 9,
+      "teamB_id": 10,
+      "scores": [
+        [21, 23]
+      ]
+    },
+    "PB1": {
+      "teamA_id": 2,
+      "teamB_id": 11,
+      "scores": [
+        [22, 18]
+      ]
+    },
+    "PB2": {
+      "teamA_id": 5,
+      "teamB_id": 8,
+      "scores": [
+        [21, 11]
+      ]
+    },
+    "PB3": {
+      "teamA_id": 8,
+      "teamB_id": 2,
+      "scores": [
+        [12, 22]
+      ]
+    },
+    "PB4": {
+      "teamA_id": 5,
+      "teamB_id": 11,
+      "scores": [
+        [21, 4]
+      ]
+    },
+    "PB5": {
+      "teamA_id": 8,
+      "teamB_id": 11,
+      "scores": [
+        [22, 15]
+      ]
+    },
+    "PB6": {
+      "teamA_id": 2,
+      "teamB_id": 5,
+      "scores": [
+        [20, 22]
+      ]
+    },
+    "PA1": {
+      "teamA_id": 6,
+      "teamB_id": 13,
+      "scores": [
+        [21, 5]
+      ]
+    },
+    "PA2": {
+      "teamA_id": 7,
+      "teamB_id": 12,
+      "scores": [
+        [22, 20]
+      ]
+    },
+    "PA3": {
+      "teamA_id": 13,
+      "teamB_id": 1,
+      "scores": [
+        [10, 21]
+      ]
+    },
+    "PA4": {
+      "teamA_id": 7,
+      "teamB_id": 6,
+      "scores": [
+        [7, 21]
+      ]
+    },
+    "PA5": {
+      "teamA_id": 1,
+      "teamB_id": 12,
+      "scores": [
+        [21, 7]
+      ]
+    },
+    "PA6": {
+      "teamA_id": 13,
+      "teamB_id": 7,
+      "scores": [
+        [12, 22]
+      ]
+    },
+    "PA7": {
+      "teamA_id": 7,
+      "teamB_id": 1,
+      "scores": [
+        [11, 22]
+      ]
+    },
+    "PA8": {
+      "teamA_id": 6,
+      "teamB_id": 12,
+      "scores": [
+        [21, 13]
+      ]
+    },
+    "PA9": {
+      "teamA_id": 12,
+      "teamB_id": 13,
+      "scores": [
+        [21, 13]
+      ]
+    },
+    "PA10": {
+      "teamA_id": 1,
+      "teamB_id": 6,
+      "scores": [
+        [21, 13]
+      ]
+    },
+    "G1": {
+      "teamA_id": 8,
+      "teamB_id": 10,
+      "scores": [
+        [22, 24]
+      ]
+    },
+    "G2": {
+      "teamA_id": 4,
+      "teamB_id": 13,
+      "scores": [
+        [21, 2]
+      ]
+    },
+    "G3": {
+      "teamA_id": 2,
+      "teamB_id": 12,
+      "scores": [
+        [21, 10]
+      ]
+    },
+    "G4": {
+      "teamA_id": 6,
+      "teamB_id": 11,
+      "scores": [
+        [21, 13]
+      ]
+    },
+    "G5": {
+      "teamA_id": 7,
+      "teamB_id": 9,
+      "scores": [
+        [8, 21]
+      ]
+    },
+    "G6": {
+      "teamA_id": 1,
+      "teamB_id": 10,
+      "scores": [
+        [22, 7]
+      ]
+    },
+    "G7": {
+      "teamA_id": 4,
+      "teamB_id": 2,
+      "scores": [
+        [10, 22]
+      ]
+    }
+  },
+  "ties": [],
+  "bracket_seed_order": [1, 3, 5, 4, 2, 6, 7, 8, 10, 9, 11, 12, 13]
+}

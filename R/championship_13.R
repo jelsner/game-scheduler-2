@@ -13,6 +13,18 @@ roster_key_13 <- function(teams = championship_teams()) {
 
 empty_tournament <- function() list(version = 1L, results = list(), ties = list())
 
+# Optional director-specified team IDs in S1-S13 order, for a bracket that was
+# drawn differently from the pool-derived seeds. Pool scores are never edited.
+bracket_seed_order_13 <- function(order, teams = championship_teams()) {
+  if (is.null(order) || !length(order)) return(integer())
+  if (!is.numeric(order) || length(order) != nrow(teams) || anyNA(order) ||
+      any(!is.finite(order)) || any(order != floor(order)) ||
+      anyDuplicated(order) || !setequal(order, teams$team_id)) {
+    stop("Bracket seed order must list every team ID exactly once in S1-S13 order.", call. = FALSE)
+  }
+  as.integer(order)
+}
+
 pool_matches_13 <- function(teams = championship_teams()) {
   do.call(rbind, lapply(c("A", "B", "C"), function(p) {
     pool <- teams[teams$pool == p, ]
@@ -147,6 +159,9 @@ tournament_state_13 <- function(snapshot = empty_tournament(), teams = champions
   tables <- lapply(c("A", "B", "C"), function(p) pool_table_13(teams[teams$pool == p, ], pool[pool$pool == p, ], records, snapshot$ties[[p]] %||% integer()))
   tally <- do.call(rbind, tables); rownames(tally) <- NULL
   seeded <- all(!is.na(tally$earned_seed))
+  tally$pool_earned_seed <- tally$earned_seed
+  seed_order <- bracket_seed_order_13(snapshot$bracket_seed_order, teams)
+  if (seeded && length(seed_order)) tally$earned_seed <- match(tally$team_id, seed_order)
   bracket <- bracket_matches_13()
   resolved <- list()
   mini <- integer()
@@ -233,22 +248,29 @@ save_tie_order_13 <- function(snapshot, pool, seeds) {
 }
 
 write_snapshot_13 <- function(snapshot, file) {
-  payload <- list(version = 1L, roster = roster_key_13(), results = lapply(snapshot$results, function(r) {
+  seed_order <- bracket_seed_order_13(snapshot$bracket_seed_order)
+  # Older apps must reject adjusted draws rather than silently ignore the swap.
+  payload <- list(version = if (length(seed_order)) 2L else 1L, roster = roster_key_13(), results = lapply(snapshot$results, function(r) {
     list(teamA_id = r$teamA_id, teamB_id = r$teamB_id,
          scores = lapply(seq_len(nrow(r$scores)), function(i) as.numeric(r$scores[i, ])))
   }), ties = snapshot$ties)
+  if (length(seed_order)) payload$bracket_seed_order <- seed_order
   jsonlite::write_json(payload, file, auto_unbox = TRUE, pretty = TRUE, null = "null")
 }
 
 read_snapshot_13 <- function(file) {
   x <- jsonlite::read_json(file, simplifyVector = FALSE)
-  if (!identical(x$version, 1L) || !is.list(x$results) || !is.list(x$ties)) stop("Not a version 1 tournament backup.", call. = FALSE)
+  if (!(identical(x$version, 1L) || identical(x$version, 2L)) || !is.list(x$results) || !is.list(x$ties)) stop("Not a supported tournament backup (version 1 or 2).", call. = FALSE)
+  if (identical(x$version, 2L) && !length(x$bracket_seed_order)) stop("Version 2 backups require an explicit bracket seed order.", call. = FALSE)
   # Seed-indexed team IDs changed with the replacement team. Never reuse an
   # earlier roster's scores merely because its numeric IDs still match.
   if ((length(x$results) || length(x$ties)) && !identical(x$roster, roster_key_13())) {
     stop("This backup belongs to an earlier or different roster. Its results cannot be applied to the current teams.", call. = FALSE)
   }
   snap <- empty_tournament()
+  if (!is.null(x$bracket_seed_order)) {
+    snap$bracket_seed_order <- bracket_seed_order_13(unlist(x$bracket_seed_order, use.names = FALSE))
+  }
   for (key in names(x$results)) {
     r <- x$results[[key]]
     if (!is.list(r$scores) || !length(r$scores) || any(lengths(r$scores) != 2L)) stop("Invalid saved score rows.", call. = FALSE)
