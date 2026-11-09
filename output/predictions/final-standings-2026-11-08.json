@@ -1,0 +1,80 @@
+[
+  {
+    "place": 1,
+    "team_id": 1,
+    "team": "Sam K. & Nathan J.",
+    "games_played": 9
+  },
+  {
+    "place": 2,
+    "team_id": 2,
+    "team": "Vergil W. & Conrad D.",
+    "games_played": 11
+  },
+  {
+    "place": 3,
+    "team_id": 5,
+    "team": "Jordan H. & Jacob D.",
+    "games_played": 7
+  },
+  {
+    "place": 4,
+    "team_id": 4,
+    "team": "Jim E. & Drew P.",
+    "games_played": 9
+  },
+  {
+    "place": 5,
+    "team_id": 6,
+    "team": "Jasun B. & Drew M.",
+    "games_played": 10
+  },
+  {
+    "place": 6,
+    "team_id": 3,
+    "team": "Mike P. & Scott S.",
+    "games_played": 7
+  },
+  {
+    "place": 7,
+    "team_id": 10,
+    "team": "John E. & Tobias C.",
+    "games_played": 8
+  },
+  {
+    "place": 8,
+    "team_id": 9,
+    "team": "Travis W. & Oscar P.",
+    "games_played": 8
+  },
+  {
+    "place": 9,
+    "team_id": 7,
+    "team": "Jay K. & Jack C.",
+    "games_played": 8
+  },
+  {
+    "place": 10,
+    "team_id": 8,
+    "team": "Hank B. & Richard P.",
+    "games_played": 7
+  },
+  {
+    "place": 11,
+    "team_id": 11,
+    "team": "Dana S. & Blair P.",
+    "games_played": 7
+  },
+  {
+    "place": 12,
+    "team_id": 12,
+    "team": "Ian S. & Peter A.",
+    "games_played": 9
+  },
+  {
+    "place": 13,
+    "team_id": 13,
+    "team": "Diana E. & Lindsi A.",
+    "games_played": 6
+  }
+]
