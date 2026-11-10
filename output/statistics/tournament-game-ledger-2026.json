@@ -1,0 +1,1442 @@
+{
+  "source": "ddc-tournament-2026-11-08 Final.json",
+  "source_md5": "c7230131a5410cf3b30e34dada2d7283",
+  "teams": [
+    {
+      "team_id": 1,
+      "seed": 1,
+      "team": "Sam K. & Nathan J.",
+      "points": 3687.6,
+      "pool": "A",
+      "pool_seed": 1
+    },
+    {
+      "team_id": 2,
+      "seed": 2,
+      "team": "Vergil W. & Conrad D.",
+      "points": 3388.93,
+      "pool": "B",
+      "pool_seed": 1
+    },
+    {
+      "team_id": 3,
+      "seed": 3,
+      "team": "Mike P. & Scott S.",
+      "points": 3082.71,
+      "pool": "C",
+      "pool_seed": 1
+    },
+    {
+      "team_id": 4,
+      "seed": 4,
+      "team": "Jim E. & Drew P.",
+      "points": 2970.25,
+      "pool": "C",
+      "pool_seed": 2
+    },
+    {
+      "team_id": 5,
+      "seed": 5,
+      "team": "Jordan H. & Jacob D.",
+      "points": 2799.27,
+      "pool": "B",
+      "pool_seed": 2
+    },
+    {
+      "team_id": 6,
+      "seed": 6,
+      "team": "Jasun B. & Drew M.",
+      "points": 2715.14,
+      "pool": "A",
+      "pool_seed": 2
+    },
+    {
+      "team_id": 7,
+      "seed": 7,
+      "team": "Jay K. & Jack C.",
+      "points": 2237.73,
+      "pool": "A",
+      "pool_seed": 3
+    },
+    {
+      "team_id": 8,
+      "seed": 8,
+      "team": "Hank B. & Richard P.",
+      "points": 2116.4,
+      "pool": "B",
+      "pool_seed": 3
+    },
+    {
+      "team_id": 9,
+      "seed": 9,
+      "team": "Travis W. & Oscar P.",
+      "points": 2017.49,
+      "pool": "C",
+      "pool_seed": 3
+    },
+    {
+      "team_id": 10,
+      "seed": 10,
+      "team": "John E. & Tobias C.",
+      "points": 1725.79,
+      "pool": "C",
+      "pool_seed": 4
+    },
+    {
+      "team_id": 11,
+      "seed": 11,
+      "team": "Dana S. & Blair P.",
+      "points": 1687.88,
+      "pool": "B",
+      "pool_seed": 4
+    },
+    {
+      "team_id": 12,
+      "seed": 12,
+      "team": "Ian S. & Peter A.",
+      "points": 1499.92,
+      "pool": "A",
+      "pool_seed": 4
+    },
+    {
+      "team_id": 13,
+      "seed": 13,
+      "team": "Diana E. & Lindsi A.",
+      "points": 1253.01,
+      "pool": "A",
+      "pool_seed": 5
+    }
+  ],
+  "standings": [
+    {
+      "place": 1,
+      "team_id": 1,
+      "team": "Sam K. & Nathan J.",
+      "games_played": 9
+    },
+    {
+      "place": 2,
+      "team_id": 2,
+      "team": "Vergil W. & Conrad D.",
+      "games_played": 11
+    },
+    {
+      "place": 3,
+      "team_id": 5,
+      "team": "Jordan H. & Jacob D.",
+      "games_played": 7
+    },
+    {
+      "place": 4,
+      "team_id": 4,
+      "team": "Jim E. & Drew P.",
+      "games_played": 9
+    },
+    {
+      "place": 5,
+      "team_id": 6,
+      "team": "Jasun B. & Drew M.",
+      "games_played": 10
+    },
+    {
+      "place": 6,
+      "team_id": 3,
+      "team": "Mike P. & Scott S.",
+      "games_played": 7
+    },
+    {
+      "place": 7,
+      "team_id": 10,
+      "team": "John E. & Tobias C.",
+      "games_played": 8
+    },
+    {
+      "place": 8,
+      "team_id": 9,
+      "team": "Travis W. & Oscar P.",
+      "games_played": 8
+    },
+    {
+      "place": 9,
+      "team_id": 7,
+      "team": "Jay K. & Jack C.",
+      "games_played": 8
+    },
+    {
+      "place": 10,
+      "team_id": 8,
+      "team": "Hank B. & Richard P.",
+      "games_played": 7
+    },
+    {
+      "place": 11,
+      "team_id": 11,
+      "team": "Dana S. & Blair P.",
+      "games_played": 7
+    },
+    {
+      "place": 12,
+      "team_id": 12,
+      "team": "Ian S. & Peter A.",
+      "games_played": 9
+    },
+    {
+      "place": 13,
+      "team_id": 13,
+      "team": "Diana E. & Lindsi A.",
+      "games_played": 6
+    }
+  ],
+  "tally": [
+    {
+      "team_id": 1,
+      "seed": 1,
+      "team": "Sam K. & Nathan J.",
+      "points": 3687.6,
+      "pool": "A",
+      "pool_seed": 1,
+      "points_against": 41,
+      "points_for": 85,
+      "losses": 0,
+      "wins": 4,
+      "played": 4,
+      "point_diff": 44,
+      "above_diff": 0,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 1,
+      "earned_seed": 1,
+      "pool_earned_seed": 1
+    },
+    {
+      "team_id": 6,
+      "seed": 6,
+      "team": "Jasun B. & Drew M.",
+      "points": 2715.14,
+      "pool": "A",
+      "pool_seed": 2,
+      "points_against": 46,
+      "points_for": 76,
+      "losses": 1,
+      "wins": 3,
+      "played": 4,
+      "point_diff": 30,
+      "above_diff": -8,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 2,
+      "earned_seed": 6,
+      "pool_earned_seed": 6
+    },
+    {
+      "team_id": 7,
+      "seed": 7,
+      "team": "Jay K. & Jack C.",
+      "points": 2237.73,
+      "pool": "A",
+      "pool_seed": 3,
+      "points_against": 75,
+      "points_for": 62,
+      "losses": 2,
+      "wins": 2,
+      "played": 4,
+      "point_diff": -13,
+      "above_diff": -25,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 3,
+      "earned_seed": 7,
+      "pool_earned_seed": 7
+    },
+    {
+      "team_id": 12,
+      "seed": 12,
+      "team": "Ian S. & Peter A.",
+      "points": 1499.92,
+      "pool": "A",
+      "pool_seed": 4,
+      "points_against": 77,
+      "points_for": 61,
+      "losses": 3,
+      "wins": 1,
+      "played": 4,
+      "point_diff": -16,
+      "above_diff": -24,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 4,
+      "earned_seed": 12,
+      "pool_earned_seed": 12
+    },
+    {
+      "team_id": 13,
+      "seed": 13,
+      "team": "Diana E. & Lindsi A.",
+      "points": 1253.01,
+      "pool": "A",
+      "pool_seed": 5,
+      "points_against": 85,
+      "points_for": 40,
+      "losses": 4,
+      "wins": 0,
+      "played": 4,
+      "point_diff": -45,
+      "above_diff": -45,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 5,
+      "earned_seed": 13,
+      "pool_earned_seed": 13
+    },
+    {
+      "team_id": 5,
+      "seed": 5,
+      "team": "Jordan H. & Jacob D.",
+      "points": 2799.27,
+      "pool": "B",
+      "pool_seed": 2,
+      "points_against": 35,
+      "points_for": 64,
+      "losses": 0,
+      "wins": 3,
+      "played": 3,
+      "point_diff": 29,
+      "above_diff": 0,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 1,
+      "earned_seed": 3,
+      "pool_earned_seed": 2
+    },
+    {
+      "team_id": 2,
+      "seed": 2,
+      "team": "Vergil W. & Conrad D.",
+      "points": 3388.93,
+      "pool": "B",
+      "pool_seed": 1,
+      "points_against": 52,
+      "points_for": 64,
+      "losses": 1,
+      "wins": 2,
+      "played": 3,
+      "point_diff": 12,
+      "above_diff": -2,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 2,
+      "earned_seed": 5,
+      "pool_earned_seed": 5
+    },
+    {
+      "team_id": 8,
+      "seed": 8,
+      "team": "Hank B. & Richard P.",
+      "points": 2116.4,
+      "pool": "B",
+      "pool_seed": 3,
+      "points_against": 58,
+      "points_for": 45,
+      "losses": 2,
+      "wins": 1,
+      "played": 3,
+      "point_diff": -13,
+      "above_diff": -20,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 3,
+      "earned_seed": 8,
+      "pool_earned_seed": 8
+    },
+    {
+      "team_id": 11,
+      "seed": 11,
+      "team": "Dana S. & Blair P.",
+      "points": 1687.88,
+      "pool": "B",
+      "pool_seed": 4,
+      "points_against": 65,
+      "points_for": 37,
+      "losses": 3,
+      "wins": 0,
+      "played": 3,
+      "point_diff": -28,
+      "above_diff": -28,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 4,
+      "earned_seed": 11,
+      "pool_earned_seed": 11
+    },
+    {
+      "team_id": 3,
+      "seed": 3,
+      "team": "Mike P. & Scott S.",
+      "points": 3082.71,
+      "pool": "C",
+      "pool_seed": 1,
+      "points_against": 25,
+      "points_for": 63,
+      "losses": 0,
+      "wins": 3,
+      "played": 3,
+      "point_diff": 38,
+      "above_diff": 0,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 1,
+      "earned_seed": 2,
+      "pool_earned_seed": 3
+    },
+    {
+      "team_id": 4,
+      "seed": 4,
+      "team": "Jim E. & Drew P.",
+      "points": 2970.25,
+      "pool": "C",
+      "pool_seed": 2,
+      "points_against": 40,
+      "points_for": 50,
+      "losses": 1,
+      "wins": 2,
+      "played": 3,
+      "point_diff": 10,
+      "above_diff": -13,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 2,
+      "earned_seed": 4,
+      "pool_earned_seed": 4
+    },
+    {
+      "team_id": 10,
+      "seed": 10,
+      "team": "John E. & Tobias C.",
+      "points": 1725.79,
+      "pool": "C",
+      "pool_seed": 4,
+      "points_against": 63,
+      "points_for": 42,
+      "losses": 2,
+      "wins": 1,
+      "played": 3,
+      "point_diff": -21,
+      "above_diff": -23,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 3,
+      "earned_seed": 9,
+      "pool_earned_seed": 9
+    },
+    {
+      "team_id": 9,
+      "seed": 9,
+      "team": "Travis W. & Oscar P.",
+      "points": 2017.49,
+      "pool": "C",
+      "pool_seed": 3,
+      "points_against": 65,
+      "points_for": 38,
+      "losses": 3,
+      "wins": 0,
+      "played": 3,
+      "point_diff": -27,
+      "above_diff": -27,
+      "above_wins": 0,
+      "tied_diff": 0,
+      "tied_wins": 0,
+      "unresolved": false,
+      "resolved": true,
+      "pool_finish": 4,
+      "earned_seed": 10,
+      "pool_earned_seed": 10
+    }
+  ],
+  "games": [
+    {
+      "match_id": "PA1",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "A",
+      "teamA_id": 6,
+      "teamB_id": 13,
+      "pointsA": 21,
+      "pointsB": 5,
+      "target": 21
+    },
+    {
+      "match_id": "PA2",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "A",
+      "teamA_id": 7,
+      "teamB_id": 12,
+      "pointsA": 22,
+      "pointsB": 20,
+      "target": 21
+    },
+    {
+      "match_id": "PA3",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "A",
+      "teamA_id": 13,
+      "teamB_id": 1,
+      "pointsA": 10,
+      "pointsB": 21,
+      "target": 21
+    },
+    {
+      "match_id": "PA4",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "A",
+      "teamA_id": 7,
+      "teamB_id": 6,
+      "pointsA": 7,
+      "pointsB": 21,
+      "target": 21
+    },
+    {
+      "match_id": "PA5",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "A",
+      "teamA_id": 1,
+      "teamB_id": 12,
+      "pointsA": 21,
+      "pointsB": 7,
+      "target": 21
+    },
+    {
+      "match_id": "PA6",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "A",
+      "teamA_id": 13,
+      "teamB_id": 7,
+      "pointsA": 12,
+      "pointsB": 22,
+      "target": 21
+    },
+    {
+      "match_id": "PA7",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "A",
+      "teamA_id": 7,
+      "teamB_id": 1,
+      "pointsA": 11,
+      "pointsB": 22,
+      "target": 21
+    },
+    {
+      "match_id": "PA8",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "A",
+      "teamA_id": 6,
+      "teamB_id": 12,
+      "pointsA": 21,
+      "pointsB": 13,
+      "target": 21
+    },
+    {
+      "match_id": "PA9",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "A",
+      "teamA_id": 12,
+      "teamB_id": 13,
+      "pointsA": 21,
+      "pointsB": 13,
+      "target": 21
+    },
+    {
+      "match_id": "PA10",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "A",
+      "teamA_id": 1,
+      "teamB_id": 6,
+      "pointsA": 21,
+      "pointsB": 13,
+      "target": 21
+    },
+    {
+      "match_id": "PB1",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "B",
+      "teamA_id": 2,
+      "teamB_id": 11,
+      "pointsA": 22,
+      "pointsB": 18,
+      "target": 21
+    },
+    {
+      "match_id": "PB2",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "B",
+      "teamA_id": 5,
+      "teamB_id": 8,
+      "pointsA": 21,
+      "pointsB": 11,
+      "target": 21
+    },
+    {
+      "match_id": "PB3",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "B",
+      "teamA_id": 8,
+      "teamB_id": 2,
+      "pointsA": 12,
+      "pointsB": 22,
+      "target": 21
+    },
+    {
+      "match_id": "PB4",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "B",
+      "teamA_id": 5,
+      "teamB_id": 11,
+      "pointsA": 21,
+      "pointsB": 4,
+      "target": 21
+    },
+    {
+      "match_id": "PB5",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "B",
+      "teamA_id": 8,
+      "teamB_id": 11,
+      "pointsA": 22,
+      "pointsB": 15,
+      "target": 21
+    },
+    {
+      "match_id": "PB6",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "B",
+      "teamA_id": 2,
+      "teamB_id": 5,
+      "pointsA": 20,
+      "pointsB": 22,
+      "target": 21
+    },
+    {
+      "match_id": "PC1",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "C",
+      "teamA_id": 3,
+      "teamB_id": 10,
+      "pointsA": 21,
+      "pointsB": 9,
+      "target": 21
+    },
+    {
+      "match_id": "PC2",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "C",
+      "teamA_id": 4,
+      "teamB_id": 9,
+      "pointsA": 21,
+      "pointsB": 9,
+      "target": 21
+    },
+    {
+      "match_id": "PC3",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "C",
+      "teamA_id": 9,
+      "teamB_id": 3,
+      "pointsA": 8,
+      "pointsB": 21,
+      "target": 21
+    },
+    {
+      "match_id": "PC4",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "C",
+      "teamA_id": 4,
+      "teamB_id": 10,
+      "pointsA": 21,
+      "pointsB": 10,
+      "target": 21
+    },
+    {
+      "match_id": "PC5",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "C",
+      "teamA_id": 9,
+      "teamB_id": 10,
+      "pointsA": 21,
+      "pointsB": 23,
+      "target": 21
+    },
+    {
+      "match_id": "PC6",
+      "game_number": 1,
+      "stage": "Pool play",
+      "pool": "C",
+      "teamA_id": 3,
+      "teamB_id": 4,
+      "pointsA": 21,
+      "pointsB": 8,
+      "target": 21
+    },
+    {
+      "match_id": "G1",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 8,
+      "teamB_id": 10,
+      "pointsA": 22,
+      "pointsB": 24,
+      "target": 21
+    },
+    {
+      "match_id": "G2",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 4,
+      "teamB_id": 13,
+      "pointsA": 21,
+      "pointsB": 2,
+      "target": 21
+    },
+    {
+      "match_id": "G3",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 2,
+      "teamB_id": 12,
+      "pointsA": 21,
+      "pointsB": 10,
+      "target": 21
+    },
+    {
+      "match_id": "G4",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 6,
+      "teamB_id": 11,
+      "pointsA": 21,
+      "pointsB": 13,
+      "target": 21
+    },
+    {
+      "match_id": "G5",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 7,
+      "teamB_id": 9,
+      "pointsA": 8,
+      "pointsB": 21,
+      "target": 21
+    },
+    {
+      "match_id": "G6",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 1,
+      "teamB_id": 10,
+      "pointsA": 22,
+      "pointsB": 7,
+      "target": 21
+    },
+    {
+      "match_id": "G7",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 4,
+      "teamB_id": 2,
+      "pointsA": 10,
+      "pointsB": 22,
+      "target": 21
+    },
+    {
+      "match_id": "G8",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 5,
+      "teamB_id": 6,
+      "pointsA": 21,
+      "pointsB": 3,
+      "target": 21
+    },
+    {
+      "match_id": "G9",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 9,
+      "teamB_id": 3,
+      "pointsA": 6,
+      "pointsB": 21,
+      "target": 21
+    },
+    {
+      "match_id": "G10",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 1,
+      "teamB_id": 2,
+      "pointsA": 21,
+      "pointsB": 13,
+      "target": 21
+    },
+    {
+      "match_id": "G11",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 5,
+      "teamB_id": 3,
+      "pointsA": 21,
+      "pointsB": 19,
+      "target": 21
+    },
+    {
+      "match_id": "G12",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 1,
+      "teamB_id": 5,
+      "pointsA": 21,
+      "pointsB": 12,
+      "target": 21
+    },
+    {
+      "match_id": "G13",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 13,
+      "teamB_id": 12,
+      "pointsA": 10,
+      "pointsB": 22,
+      "target": 21
+    },
+    {
+      "match_id": "G14",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 4,
+      "teamB_id": 8,
+      "pointsA": 22,
+      "pointsB": 15,
+      "target": 21
+    },
+    {
+      "match_id": "G15",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 10,
+      "teamB_id": 12,
+      "pointsA": 21,
+      "pointsB": 17,
+      "target": 21
+    },
+    {
+      "match_id": "G16",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 9,
+      "teamB_id": 11,
+      "pointsA": 21,
+      "pointsB": 9,
+      "target": 21
+    },
+    {
+      "match_id": "G17",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 6,
+      "teamB_id": 7,
+      "pointsA": 21,
+      "pointsB": 8,
+      "target": 21
+    },
+    {
+      "match_id": "G18",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 4,
+      "teamB_id": 10,
+      "pointsA": 21,
+      "pointsB": 16,
+      "target": 21
+    },
+    {
+      "match_id": "G19",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 9,
+      "teamB_id": 6,
+      "pointsA": 9,
+      "pointsB": 21,
+      "target": 21
+    },
+    {
+      "match_id": "G20",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 4,
+      "teamB_id": 3,
+      "pointsA": 22,
+      "pointsB": 19,
+      "target": 21
+    },
+    {
+      "match_id": "G21",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 6,
+      "teamB_id": 2,
+      "pointsA": 19,
+      "pointsB": 21,
+      "target": 21
+    },
+    {
+      "match_id": "G22",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 4,
+      "teamB_id": 2,
+      "pointsA": 14,
+      "pointsB": 21,
+      "target": 21
+    },
+    {
+      "match_id": "G23",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 2,
+      "teamB_id": 5,
+      "pointsA": 21,
+      "pointsB": 19,
+      "target": 21
+    },
+    {
+      "match_id": "G24",
+      "game_number": 1,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 1,
+      "teamB_id": 2,
+      "pointsA": 21,
+      "pointsB": 18,
+      "target": 21
+    },
+    {
+      "match_id": "G24",
+      "game_number": 2,
+      "stage": "Double elimination",
+      "pool": "",
+      "teamA_id": 1,
+      "teamB_id": 2,
+      "pointsA": 21,
+      "pointsB": 14,
+      "target": 21
+    },
+    {
+      "match_id": "P1",
+      "game_number": 1,
+      "stage": "Placement",
+      "pool": "",
+      "teamA_id": 7,
+      "teamB_id": 12,
+      "pointsA": 22,
+      "pointsB": 19,
+      "target": 21
+    },
+    {
+      "match_id": "P2",
+      "game_number": 1,
+      "stage": "Placement",
+      "pool": "",
+      "teamA_id": 8,
+      "teamB_id": 11,
+      "pointsA": 22,
+      "pointsB": 20,
+      "target": 21
+    },
+    {
+      "match_id": "P3",
+      "game_number": 1,
+      "stage": "Placement",
+      "pool": "",
+      "teamA_id": 7,
+      "teamB_id": 8,
+      "pointsA": 21,
+      "pointsB": 15,
+      "target": 21
+    },
+    {
+      "match_id": "P4",
+      "game_number": 1,
+      "stage": "Placement",
+      "pool": "",
+      "teamA_id": 12,
+      "teamB_id": 11,
+      "pointsA": 19,
+      "pointsB": 22,
+      "target": 21
+    },
+    {
+      "match_id": "P5",
+      "game_number": 1,
+      "stage": "Placement",
+      "pool": "",
+      "teamA_id": 10,
+      "teamB_id": 9,
+      "pointsA": 21,
+      "pointsB": 19,
+      "target": 21
+    },
+    {
+      "match_id": "P6",
+      "game_number": 1,
+      "stage": "Placement",
+      "pool": "",
+      "teamA_id": 3,
+      "teamB_id": 6,
+      "pointsA": 14,
+      "pointsB": 21,
+      "target": 21
+    }
+  ],
+  "matches": [
+    {
+      "key": "PA1",
+      "stage": "Pool play",
+      "winner_id": 6,
+      "loser_id": 13,
+      "_row": "1"
+    },
+    {
+      "key": "PA2",
+      "stage": "Pool play",
+      "winner_id": 7,
+      "loser_id": 12,
+      "_row": "2"
+    },
+    {
+      "key": "PA3",
+      "stage": "Pool play",
+      "winner_id": 1,
+      "loser_id": 13,
+      "_row": "3"
+    },
+    {
+      "key": "PA4",
+      "stage": "Pool play",
+      "winner_id": 6,
+      "loser_id": 7,
+      "_row": "4"
+    },
+    {
+      "key": "PA5",
+      "stage": "Pool play",
+      "winner_id": 1,
+      "loser_id": 12,
+      "_row": "5"
+    },
+    {
+      "key": "PA6",
+      "stage": "Pool play",
+      "winner_id": 7,
+      "loser_id": 13,
+      "_row": "6"
+    },
+    {
+      "key": "PA7",
+      "stage": "Pool play",
+      "winner_id": 1,
+      "loser_id": 7,
+      "_row": "7"
+    },
+    {
+      "key": "PA8",
+      "stage": "Pool play",
+      "winner_id": 6,
+      "loser_id": 12,
+      "_row": "8"
+    },
+    {
+      "key": "PA9",
+      "stage": "Pool play",
+      "winner_id": 12,
+      "loser_id": 13,
+      "_row": "9"
+    },
+    {
+      "key": "PA10",
+      "stage": "Pool play",
+      "winner_id": 1,
+      "loser_id": 6,
+      "_row": "10"
+    },
+    {
+      "key": "PB1",
+      "stage": "Pool play",
+      "winner_id": 2,
+      "loser_id": 11,
+      "_row": "11"
+    },
+    {
+      "key": "PB2",
+      "stage": "Pool play",
+      "winner_id": 5,
+      "loser_id": 8,
+      "_row": "12"
+    },
+    {
+      "key": "PB3",
+      "stage": "Pool play",
+      "winner_id": 2,
+      "loser_id": 8,
+      "_row": "13"
+    },
+    {
+      "key": "PB4",
+      "stage": "Pool play",
+      "winner_id": 5,
+      "loser_id": 11,
+      "_row": "14"
+    },
+    {
+      "key": "PB5",
+      "stage": "Pool play",
+      "winner_id": 8,
+      "loser_id": 11,
+      "_row": "15"
+    },
+    {
+      "key": "PB6",
+      "stage": "Pool play",
+      "winner_id": 5,
+      "loser_id": 2,
+      "_row": "16"
+    },
+    {
+      "key": "PC1",
+      "stage": "Pool play",
+      "winner_id": 3,
+      "loser_id": 10,
+      "_row": "17"
+    },
+    {
+      "key": "PC2",
+      "stage": "Pool play",
+      "winner_id": 4,
+      "loser_id": 9,
+      "_row": "18"
+    },
+    {
+      "key": "PC3",
+      "stage": "Pool play",
+      "winner_id": 3,
+      "loser_id": 9,
+      "_row": "19"
+    },
+    {
+      "key": "PC4",
+      "stage": "Pool play",
+      "winner_id": 4,
+      "loser_id": 10,
+      "_row": "20"
+    },
+    {
+      "key": "PC5",
+      "stage": "Pool play",
+      "winner_id": 10,
+      "loser_id": 9,
+      "_row": "21"
+    },
+    {
+      "key": "PC6",
+      "stage": "Pool play",
+      "winner_id": 3,
+      "loser_id": 4,
+      "_row": "22"
+    },
+    {
+      "key": "G1",
+      "stage": "Double elimination",
+      "winner_id": 10,
+      "loser_id": 8,
+      "_row": "G1"
+    },
+    {
+      "key": "G2",
+      "stage": "Double elimination",
+      "winner_id": 4,
+      "loser_id": 13,
+      "_row": "G2"
+    },
+    {
+      "key": "G3",
+      "stage": "Double elimination",
+      "winner_id": 2,
+      "loser_id": 12,
+      "_row": "G3"
+    },
+    {
+      "key": "G4",
+      "stage": "Double elimination",
+      "winner_id": 6,
+      "loser_id": 11,
+      "_row": "G4"
+    },
+    {
+      "key": "G5",
+      "stage": "Double elimination",
+      "winner_id": 9,
+      "loser_id": 7,
+      "_row": "G5"
+    },
+    {
+      "key": "G6",
+      "stage": "Double elimination",
+      "winner_id": 1,
+      "loser_id": 10,
+      "_row": "G6"
+    },
+    {
+      "key": "G7",
+      "stage": "Double elimination",
+      "winner_id": 2,
+      "loser_id": 4,
+      "_row": "G7"
+    },
+    {
+      "key": "G8",
+      "stage": "Double elimination",
+      "winner_id": 5,
+      "loser_id": 6,
+      "_row": "G8"
+    },
+    {
+      "key": "G9",
+      "stage": "Double elimination",
+      "winner_id": 3,
+      "loser_id": 9,
+      "_row": "G9"
+    },
+    {
+      "key": "G10",
+      "stage": "Double elimination",
+      "winner_id": 1,
+      "loser_id": 2,
+      "_row": "G10"
+    },
+    {
+      "key": "G11",
+      "stage": "Double elimination",
+      "winner_id": 5,
+      "loser_id": 3,
+      "_row": "G11"
+    },
+    {
+      "key": "G12",
+      "stage": "Double elimination",
+      "winner_id": 1,
+      "loser_id": 5,
+      "_row": "G12"
+    },
+    {
+      "key": "G13",
+      "stage": "Double elimination",
+      "winner_id": 12,
+      "loser_id": 13,
+      "_row": "G13"
+    },
+    {
+      "key": "G14",
+      "stage": "Double elimination",
+      "winner_id": 4,
+      "loser_id": 8,
+      "_row": "G14"
+    },
+    {
+      "key": "G15",
+      "stage": "Double elimination",
+      "winner_id": 10,
+      "loser_id": 12,
+      "_row": "G15"
+    },
+    {
+      "key": "G16",
+      "stage": "Double elimination",
+      "winner_id": 9,
+      "loser_id": 11,
+      "_row": "G16"
+    },
+    {
+      "key": "G17",
+      "stage": "Double elimination",
+      "winner_id": 6,
+      "loser_id": 7,
+      "_row": "G17"
+    },
+    {
+      "key": "G18",
+      "stage": "Double elimination",
+      "winner_id": 4,
+      "loser_id": 10,
+      "_row": "G18"
+    },
+    {
+      "key": "G19",
+      "stage": "Double elimination",
+      "winner_id": 6,
+      "loser_id": 9,
+      "_row": "G19"
+    },
+    {
+      "key": "G20",
+      "stage": "Double elimination",
+      "winner_id": 4,
+      "loser_id": 3,
+      "_row": "G20"
+    },
+    {
+      "key": "G21",
+      "stage": "Double elimination",
+      "winner_id": 2,
+      "loser_id": 6,
+      "_row": "G21"
+    },
+    {
+      "key": "G22",
+      "stage": "Double elimination",
+      "winner_id": 2,
+      "loser_id": 4,
+      "_row": "G22"
+    },
+    {
+      "key": "G23",
+      "stage": "Double elimination",
+      "winner_id": 2,
+      "loser_id": 5,
+      "_row": "G23"
+    },
+    {
+      "key": "G24",
+      "stage": "Double elimination",
+      "winner_id": 1,
+      "loser_id": 2,
+      "_row": "G24"
+    },
+    {
+      "key": "P1",
+      "stage": "Placement",
+      "winner_id": 7,
+      "loser_id": 12,
+      "_row": "P1"
+    },
+    {
+      "key": "P2",
+      "stage": "Placement",
+      "winner_id": 8,
+      "loser_id": 11,
+      "_row": "P2"
+    },
+    {
+      "key": "P3",
+      "stage": "Placement",
+      "winner_id": 7,
+      "loser_id": 8,
+      "_row": "P3"
+    },
+    {
+      "key": "P4",
+      "stage": "Placement",
+      "winner_id": 11,
+      "loser_id": 12,
+      "_row": "P4"
+    },
+    {
+      "key": "P5",
+      "stage": "Placement",
+      "winner_id": 10,
+      "loser_id": 9,
+      "_row": "P5"
+    },
+    {
+      "key": "P6",
+      "stage": "Placement",
+      "winner_id": 6,
+      "loser_id": 3,
+      "_row": "P6"
+    }
+  ]
+}

@@ -1,0 +1,1805 @@
+[
+  {
+    "place": 1,
+    "team_id": 1,
+    "team": "Sam K. & Nathan J.",
+    "original_seed": 1,
+    "seed_improvement": 0,
+    "games": 9,
+    "wins": 9,
+    "losses": 0,
+    "win_pct": 1.0,
+    "points_for": 191,
+    "points_against": 105,
+    "point_diff": 86,
+    "avg_points_for": 21.22222222222222,
+    "avg_points_against": 11.666666666666666,
+    "avg_margin": 9.555555555555555,
+    "point_share": 0.6452702702702703,
+    "match_wins": 8,
+    "match_losses": 0,
+    "stages": {
+      "Pool play": {
+        "wins": 4,
+        "losses": 0
+      },
+      "Double elimination": {
+        "wins": 5,
+        "losses": 0
+      },
+      "Placement": {
+        "wins": 0,
+        "losses": 0
+      }
+    },
+    "close_record": {
+      "wins": 1,
+      "losses": 0
+    },
+    "extended_record": {
+      "wins": 0,
+      "losses": 0
+    },
+    "largest_win": 15,
+    "largest_loss": null,
+    "games_detail": [
+      {
+        "match_id": "PA3",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 13,
+        "pf": 21,
+        "pa": 10,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA5",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 12,
+        "pf": 21,
+        "pa": 7,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA7",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 7,
+        "pf": 22,
+        "pa": 11,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA10",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 6,
+        "pf": 21,
+        "pa": 13,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G6",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 10,
+        "pf": 22,
+        "pa": 7,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G10",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 2,
+        "pf": 21,
+        "pa": 13,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G12",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 5,
+        "pf": 21,
+        "pa": 12,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G24",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 2,
+        "pf": 21,
+        "pa": 18,
+        "won": true,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "G24",
+        "game_number": 2,
+        "stage": "Double elimination",
+        "opponent_id": 2,
+        "pf": 21,
+        "pa": 14,
+        "won": true,
+        "close": false,
+        "extended": false
+      }
+    ],
+    "srs": 10.279753420454771,
+    "schedule_strength": 0.7241978648992187,
+    "srs_rank": 1
+  },
+  {
+    "place": 2,
+    "team_id": 2,
+    "team": "Vergil W. & Conrad D.",
+    "original_seed": 2,
+    "seed_improvement": 0,
+    "games": 11,
+    "wins": 7,
+    "losses": 4,
+    "win_pct": 0.6363636363636364,
+    "points_for": 215,
+    "points_against": 187,
+    "point_diff": 28,
+    "avg_points_for": 19.545454545454547,
+    "avg_points_against": 17.0,
+    "avg_margin": 2.5454545454545454,
+    "point_share": 0.5348258706467661,
+    "match_wins": 7,
+    "match_losses": 3,
+    "stages": {
+      "Pool play": {
+        "wins": 2,
+        "losses": 1
+      },
+      "Double elimination": {
+        "wins": 5,
+        "losses": 3
+      },
+      "Placement": {
+        "wins": 0,
+        "losses": 0
+      }
+    },
+    "close_record": {
+      "wins": 2,
+      "losses": 2
+    },
+    "extended_record": {
+      "wins": 0,
+      "losses": 1
+    },
+    "largest_win": 12,
+    "largest_loss": 8,
+    "games_detail": [
+      {
+        "match_id": "PB1",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 11,
+        "pf": 22,
+        "pa": 18,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PB3",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 8,
+        "pf": 22,
+        "pa": 12,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PB6",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 5,
+        "pf": 20,
+        "pa": 22,
+        "won": false,
+        "close": true,
+        "extended": true
+      },
+      {
+        "match_id": "G3",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 12,
+        "pf": 21,
+        "pa": 10,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G7",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 4,
+        "pf": 22,
+        "pa": 10,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G10",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 1,
+        "pf": 13,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G21",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 6,
+        "pf": 21,
+        "pa": 19,
+        "won": true,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "G22",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 4,
+        "pf": 21,
+        "pa": 14,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G23",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 5,
+        "pf": 21,
+        "pa": 19,
+        "won": true,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "G24",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 1,
+        "pf": 18,
+        "pa": 21,
+        "won": false,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "G24",
+        "game_number": 2,
+        "stage": "Double elimination",
+        "opponent_id": 1,
+        "pf": 14,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      }
+    ],
+    "srs": 6.456275410644496,
+    "schedule_strength": 3.9108208651899434,
+    "srs_rank": 4
+  },
+  {
+    "place": 3,
+    "team_id": 5,
+    "team": "Jordan H. & Jacob D.",
+    "original_seed": 5,
+    "seed_improvement": 2,
+    "games": 7,
+    "wins": 5,
+    "losses": 2,
+    "win_pct": 0.7142857142857143,
+    "points_for": 137,
+    "points_against": 99,
+    "point_diff": 38,
+    "avg_points_for": 19.571428571428573,
+    "avg_points_against": 14.142857142857142,
+    "avg_margin": 5.428571428571429,
+    "point_share": 0.5805084745762712,
+    "match_wins": 5,
+    "match_losses": 2,
+    "stages": {
+      "Pool play": {
+        "wins": 3,
+        "losses": 0
+      },
+      "Double elimination": {
+        "wins": 2,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 0,
+        "losses": 0
+      }
+    },
+    "close_record": {
+      "wins": 2,
+      "losses": 1
+    },
+    "extended_record": {
+      "wins": 1,
+      "losses": 0
+    },
+    "largest_win": 18,
+    "largest_loss": 9,
+    "games_detail": [
+      {
+        "match_id": "PB2",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 8,
+        "pf": 21,
+        "pa": 11,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PB4",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 11,
+        "pf": 21,
+        "pa": 4,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PB6",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 2,
+        "pf": 22,
+        "pa": 20,
+        "won": true,
+        "close": true,
+        "extended": true
+      },
+      {
+        "match_id": "G8",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 6,
+        "pf": 21,
+        "pa": 3,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G11",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 3,
+        "pf": 21,
+        "pa": 19,
+        "won": true,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "G12",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 1,
+        "pf": 12,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G23",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 2,
+        "pf": 19,
+        "pa": 21,
+        "won": false,
+        "close": true,
+        "extended": false
+      }
+    ],
+    "srs": 8.910640528987201,
+    "schedule_strength": 3.4820691004157607,
+    "srs_rank": 2
+  },
+  {
+    "place": 4,
+    "team_id": 4,
+    "team": "Jim E. & Drew P.",
+    "original_seed": 4,
+    "seed_improvement": 0,
+    "games": 9,
+    "wins": 6,
+    "losses": 3,
+    "win_pct": 0.6666666666666666,
+    "points_for": 160,
+    "points_against": 135,
+    "point_diff": 25,
+    "avg_points_for": 17.77777777777778,
+    "avg_points_against": 15.0,
+    "avg_margin": 2.7777777777777777,
+    "point_share": 0.5423728813559322,
+    "match_wins": 6,
+    "match_losses": 3,
+    "stages": {
+      "Pool play": {
+        "wins": 2,
+        "losses": 1
+      },
+      "Double elimination": {
+        "wins": 4,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 0,
+        "losses": 0
+      }
+    },
+    "close_record": {
+      "wins": 1,
+      "losses": 0
+    },
+    "extended_record": {
+      "wins": 0,
+      "losses": 0
+    },
+    "largest_win": 19,
+    "largest_loss": 13,
+    "games_detail": [
+      {
+        "match_id": "PC2",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 9,
+        "pf": 21,
+        "pa": 9,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PC4",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 10,
+        "pf": 21,
+        "pa": 10,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PC6",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 3,
+        "pf": 8,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G2",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 13,
+        "pf": 21,
+        "pa": 2,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G7",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 2,
+        "pf": 10,
+        "pa": 22,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G14",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 8,
+        "pf": 22,
+        "pa": 15,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G18",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 10,
+        "pf": 21,
+        "pa": 16,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G20",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 3,
+        "pf": 22,
+        "pa": 19,
+        "won": true,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "G22",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 2,
+        "pf": 14,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      }
+    ],
+    "srs": 2.852571594077259,
+    "schedule_strength": 0.07479381629947914,
+    "srs_rank": 6
+  },
+  {
+    "place": 5,
+    "team_id": 6,
+    "team": "Jasun B. & Drew M.",
+    "original_seed": 6,
+    "seed_improvement": 1,
+    "games": 10,
+    "wins": 7,
+    "losses": 3,
+    "win_pct": 0.7,
+    "points_for": 182,
+    "points_against": 132,
+    "point_diff": 50,
+    "avg_points_for": 18.2,
+    "avg_points_against": 13.2,
+    "avg_margin": 5.0,
+    "point_share": 0.5796178343949044,
+    "match_wins": 7,
+    "match_losses": 3,
+    "stages": {
+      "Pool play": {
+        "wins": 3,
+        "losses": 1
+      },
+      "Double elimination": {
+        "wins": 3,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 1,
+        "losses": 0
+      }
+    },
+    "close_record": {
+      "wins": 0,
+      "losses": 1
+    },
+    "extended_record": {
+      "wins": 0,
+      "losses": 0
+    },
+    "largest_win": 16,
+    "largest_loss": 18,
+    "games_detail": [
+      {
+        "match_id": "PA1",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 13,
+        "pf": 21,
+        "pa": 5,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA4",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 7,
+        "pf": 21,
+        "pa": 7,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA8",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 12,
+        "pf": 21,
+        "pa": 13,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA10",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 1,
+        "pf": 13,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G4",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 11,
+        "pf": 21,
+        "pa": 13,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G8",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 5,
+        "pf": 3,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G17",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 7,
+        "pf": 21,
+        "pa": 8,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G19",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 9,
+        "pf": 21,
+        "pa": 9,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G21",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 2,
+        "pf": 19,
+        "pa": 21,
+        "won": false,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "P6",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 3,
+        "pf": 21,
+        "pa": 14,
+        "won": true,
+        "close": false,
+        "extended": false
+      }
+    ],
+    "srs": 4.488293315812337,
+    "schedule_strength": -0.5117066841876581,
+    "srs_rank": 5
+  },
+  {
+    "place": 6,
+    "team_id": 3,
+    "team": "Mike P. & Scott S.",
+    "original_seed": 3,
+    "seed_improvement": -3,
+    "games": 7,
+    "wins": 4,
+    "losses": 3,
+    "win_pct": 0.5714285714285714,
+    "points_for": 136,
+    "points_against": 95,
+    "point_diff": 41,
+    "avg_points_for": 19.428571428571427,
+    "avg_points_against": 13.571428571428571,
+    "avg_margin": 5.857142857142857,
+    "point_share": 0.5887445887445888,
+    "match_wins": 4,
+    "match_losses": 3,
+    "stages": {
+      "Pool play": {
+        "wins": 3,
+        "losses": 0
+      },
+      "Double elimination": {
+        "wins": 1,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 0,
+        "losses": 1
+      }
+    },
+    "close_record": {
+      "wins": 0,
+      "losses": 2
+    },
+    "extended_record": {
+      "wins": 0,
+      "losses": 0
+    },
+    "largest_win": 15,
+    "largest_loss": 7,
+    "games_detail": [
+      {
+        "match_id": "PC1",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 10,
+        "pf": 21,
+        "pa": 9,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PC3",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 9,
+        "pf": 21,
+        "pa": 8,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PC6",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 4,
+        "pf": 21,
+        "pa": 8,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G9",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 9,
+        "pf": 21,
+        "pa": 6,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G11",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 5,
+        "pf": 19,
+        "pa": 21,
+        "won": false,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "G20",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 4,
+        "pf": 19,
+        "pa": 22,
+        "won": false,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "P6",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 6,
+        "pf": 14,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      }
+    ],
+    "srs": 7.136977557179193,
+    "schedule_strength": 1.2798347000363364,
+    "srs_rank": 3
+  },
+  {
+    "place": 7,
+    "team_id": 10,
+    "team": "John E. & Tobias C.",
+    "original_seed": 10,
+    "seed_improvement": 3,
+    "games": 8,
+    "wins": 4,
+    "losses": 4,
+    "win_pct": 0.5,
+    "points_for": 131,
+    "points_against": 164,
+    "point_diff": -33,
+    "avg_points_for": 16.375,
+    "avg_points_against": 20.5,
+    "avg_margin": -4.125,
+    "point_share": 0.4440677966101695,
+    "match_wins": 4,
+    "match_losses": 4,
+    "stages": {
+      "Pool play": {
+        "wins": 1,
+        "losses": 2
+      },
+      "Double elimination": {
+        "wins": 2,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 1,
+        "losses": 0
+      }
+    },
+    "close_record": {
+      "wins": 3,
+      "losses": 0
+    },
+    "extended_record": {
+      "wins": 2,
+      "losses": 0
+    },
+    "largest_win": 4,
+    "largest_loss": 15,
+    "games_detail": [
+      {
+        "match_id": "PC1",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 3,
+        "pf": 9,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PC4",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 4,
+        "pf": 10,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PC5",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 9,
+        "pf": 23,
+        "pa": 21,
+        "won": true,
+        "close": true,
+        "extended": true
+      },
+      {
+        "match_id": "G1",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 8,
+        "pf": 24,
+        "pa": 22,
+        "won": true,
+        "close": true,
+        "extended": true
+      },
+      {
+        "match_id": "G6",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 1,
+        "pf": 7,
+        "pa": 22,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G15",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 12,
+        "pf": 21,
+        "pa": 17,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G18",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 4,
+        "pf": 16,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "P5",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 9,
+        "pf": 21,
+        "pa": 19,
+        "won": true,
+        "close": true,
+        "extended": false
+      }
+    ],
+    "srs": -3.2823518873192565,
+    "schedule_strength": 0.8426481126807497,
+    "srs_rank": 7
+  },
+  {
+    "place": 8,
+    "team_id": 9,
+    "team": "Travis W. & Oscar P.",
+    "original_seed": 9,
+    "seed_improvement": 1,
+    "games": 8,
+    "wins": 2,
+    "losses": 6,
+    "win_pct": 0.25,
+    "points_for": 114,
+    "points_against": 145,
+    "point_diff": -31,
+    "avg_points_for": 14.25,
+    "avg_points_against": 18.125,
+    "avg_margin": -3.875,
+    "point_share": 0.44015444015444016,
+    "match_wins": 2,
+    "match_losses": 6,
+    "stages": {
+      "Pool play": {
+        "wins": 0,
+        "losses": 3
+      },
+      "Double elimination": {
+        "wins": 2,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 0,
+        "losses": 1
+      }
+    },
+    "close_record": {
+      "wins": 0,
+      "losses": 2
+    },
+    "extended_record": {
+      "wins": 0,
+      "losses": 1
+    },
+    "largest_win": 13,
+    "largest_loss": 15,
+    "games_detail": [
+      {
+        "match_id": "PC2",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 4,
+        "pf": 9,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PC3",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 3,
+        "pf": 8,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PC5",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 10,
+        "pf": 21,
+        "pa": 23,
+        "won": false,
+        "close": true,
+        "extended": true
+      },
+      {
+        "match_id": "G5",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 7,
+        "pf": 21,
+        "pa": 8,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G9",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 3,
+        "pf": 6,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G16",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 11,
+        "pf": 21,
+        "pa": 9,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G19",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 6,
+        "pf": 9,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "P5",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 10,
+        "pf": 19,
+        "pa": 21,
+        "won": false,
+        "close": true,
+        "extended": false
+      }
+    ],
+    "srs": -3.431441122690223,
+    "schedule_strength": 0.4435588773097817,
+    "srs_rank": 8
+  },
+  {
+    "place": 9,
+    "team_id": 7,
+    "team": "Jay K. & Jack C.",
+    "original_seed": 7,
+    "seed_improvement": -2,
+    "games": 8,
+    "wins": 4,
+    "losses": 4,
+    "win_pct": 0.5,
+    "points_for": 121,
+    "points_against": 151,
+    "point_diff": -30,
+    "avg_points_for": 15.125,
+    "avg_points_against": 18.875,
+    "avg_margin": -3.75,
+    "point_share": 0.44485294117647056,
+    "match_wins": 4,
+    "match_losses": 4,
+    "stages": {
+      "Pool play": {
+        "wins": 2,
+        "losses": 2
+      },
+      "Double elimination": {
+        "wins": 0,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 2,
+        "losses": 0
+      }
+    },
+    "close_record": {
+      "wins": 2,
+      "losses": 0
+    },
+    "extended_record": {
+      "wins": 1,
+      "losses": 0
+    },
+    "largest_win": 10,
+    "largest_loss": 14,
+    "games_detail": [
+      {
+        "match_id": "PA2",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 12,
+        "pf": 22,
+        "pa": 20,
+        "won": true,
+        "close": true,
+        "extended": true
+      },
+      {
+        "match_id": "PA4",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 6,
+        "pf": 7,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA6",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 13,
+        "pf": 22,
+        "pa": 12,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA7",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 1,
+        "pf": 11,
+        "pa": 22,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G5",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 9,
+        "pf": 8,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G17",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 6,
+        "pf": 8,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "P1",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 12,
+        "pf": 22,
+        "pa": 19,
+        "won": true,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "P3",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 8,
+        "pf": 21,
+        "pa": 15,
+        "won": true,
+        "close": false,
+        "extended": false
+      }
+    ],
+    "srs": -5.1845039438770675,
+    "schedule_strength": -1.434503943877069,
+    "srs_rank": 10
+  },
+  {
+    "place": 10,
+    "team_id": 8,
+    "team": "Hank B. & Richard P.",
+    "original_seed": 8,
+    "seed_improvement": -2,
+    "games": 7,
+    "wins": 2,
+    "losses": 5,
+    "win_pct": 0.2857142857142857,
+    "points_for": 119,
+    "points_against": 145,
+    "point_diff": -26,
+    "avg_points_for": 17.0,
+    "avg_points_against": 20.714285714285715,
+    "avg_margin": -3.7142857142857144,
+    "point_share": 0.45075757575757575,
+    "match_wins": 2,
+    "match_losses": 5,
+    "stages": {
+      "Pool play": {
+        "wins": 1,
+        "losses": 2
+      },
+      "Double elimination": {
+        "wins": 0,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 1,
+        "losses": 1
+      }
+    },
+    "close_record": {
+      "wins": 1,
+      "losses": 1
+    },
+    "extended_record": {
+      "wins": 1,
+      "losses": 1
+    },
+    "largest_win": 7,
+    "largest_loss": 10,
+    "games_detail": [
+      {
+        "match_id": "PB2",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 5,
+        "pf": 11,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PB3",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 2,
+        "pf": 12,
+        "pa": 22,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PB5",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 11,
+        "pf": 22,
+        "pa": 15,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G1",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 10,
+        "pf": 22,
+        "pa": 24,
+        "won": false,
+        "close": true,
+        "extended": true
+      },
+      {
+        "match_id": "G14",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 4,
+        "pf": 15,
+        "pa": 22,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "P2",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 11,
+        "pf": 22,
+        "pa": 20,
+        "won": true,
+        "close": true,
+        "extended": true
+      },
+      {
+        "match_id": "P3",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 7,
+        "pf": 15,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      }
+    ],
+    "srs": -4.125950124570816,
+    "schedule_strength": -0.4116644102850953,
+    "srs_rank": 9
+  },
+  {
+    "place": 11,
+    "team_id": 11,
+    "team": "Dana S. & Blair P.",
+    "original_seed": 11,
+    "seed_improvement": 0,
+    "games": 7,
+    "wins": 1,
+    "losses": 6,
+    "win_pct": 0.14285714285714285,
+    "points_for": 101,
+    "points_against": 148,
+    "point_diff": -47,
+    "avg_points_for": 14.428571428571429,
+    "avg_points_against": 21.142857142857142,
+    "avg_margin": -6.714285714285714,
+    "point_share": 0.40562248995983935,
+    "match_wins": 1,
+    "match_losses": 6,
+    "stages": {
+      "Pool play": {
+        "wins": 0,
+        "losses": 3
+      },
+      "Double elimination": {
+        "wins": 0,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 1,
+        "losses": 1
+      }
+    },
+    "close_record": {
+      "wins": 1,
+      "losses": 1
+    },
+    "extended_record": {
+      "wins": 0,
+      "losses": 1
+    },
+    "largest_win": 3,
+    "largest_loss": 17,
+    "games_detail": [
+      {
+        "match_id": "PB1",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 2,
+        "pf": 18,
+        "pa": 22,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PB4",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 5,
+        "pf": 4,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PB5",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 8,
+        "pf": 15,
+        "pa": 22,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G4",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 6,
+        "pf": 13,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G16",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 9,
+        "pf": 9,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "P2",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 8,
+        "pf": 20,
+        "pa": 22,
+        "won": false,
+        "close": true,
+        "extended": true
+      },
+      {
+        "match_id": "P4",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 12,
+        "pf": 22,
+        "pa": 19,
+        "won": true,
+        "close": true,
+        "extended": false
+      }
+    ],
+    "srs": -6.31714128725415,
+    "schedule_strength": 0.3971444270315652,
+    "srs_rank": 12
+  },
+  {
+    "place": 12,
+    "team_id": 12,
+    "team": "Ian S. & Peter A.",
+    "original_seed": 12,
+    "seed_improvement": 0,
+    "games": 9,
+    "wins": 2,
+    "losses": 7,
+    "win_pct": 0.2222222222222222,
+    "points_for": 148,
+    "points_against": 173,
+    "point_diff": -25,
+    "avg_points_for": 16.444444444444443,
+    "avg_points_against": 19.22222222222222,
+    "avg_margin": -2.7777777777777777,
+    "point_share": 0.46105919003115264,
+    "match_wins": 2,
+    "match_losses": 7,
+    "stages": {
+      "Pool play": {
+        "wins": 1,
+        "losses": 3
+      },
+      "Double elimination": {
+        "wins": 1,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 0,
+        "losses": 2
+      }
+    },
+    "close_record": {
+      "wins": 0,
+      "losses": 3
+    },
+    "extended_record": {
+      "wins": 0,
+      "losses": 1
+    },
+    "largest_win": 12,
+    "largest_loss": 14,
+    "games_detail": [
+      {
+        "match_id": "PA2",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 7,
+        "pf": 20,
+        "pa": 22,
+        "won": false,
+        "close": true,
+        "extended": true
+      },
+      {
+        "match_id": "PA5",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 1,
+        "pf": 7,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA8",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 6,
+        "pf": 13,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA9",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 13,
+        "pf": 21,
+        "pa": 13,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G3",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 2,
+        "pf": 10,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G13",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 13,
+        "pf": 22,
+        "pa": 10,
+        "won": true,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G15",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 10,
+        "pf": 17,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "P1",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 7,
+        "pf": 19,
+        "pa": 22,
+        "won": false,
+        "close": true,
+        "extended": false
+      },
+      {
+        "match_id": "P4",
+        "game_number": 1,
+        "stage": "Placement",
+        "opponent_id": 11,
+        "pf": 19,
+        "pa": 22,
+        "won": false,
+        "close": true,
+        "extended": false
+      }
+    ],
+    "srs": -5.391856894391223,
+    "schedule_strength": -2.6140791166134405,
+    "srs_rank": 11
+  },
+  {
+    "place": 13,
+    "team_id": 13,
+    "team": "Diana E. & Lindsi A.",
+    "original_seed": 13,
+    "seed_improvement": 0,
+    "games": 6,
+    "wins": 0,
+    "losses": 6,
+    "win_pct": 0.0,
+    "points_for": 52,
+    "points_against": 128,
+    "point_diff": -76,
+    "avg_points_for": 8.666666666666666,
+    "avg_points_against": 21.333333333333332,
+    "avg_margin": -12.666666666666666,
+    "point_share": 0.28888888888888886,
+    "match_wins": 0,
+    "match_losses": 6,
+    "stages": {
+      "Pool play": {
+        "wins": 0,
+        "losses": 4
+      },
+      "Double elimination": {
+        "wins": 0,
+        "losses": 2
+      },
+      "Placement": {
+        "wins": 0,
+        "losses": 0
+      }
+    },
+    "close_record": {
+      "wins": 0,
+      "losses": 0
+    },
+    "extended_record": {
+      "wins": 0,
+      "losses": 0
+    },
+    "largest_win": null,
+    "largest_loss": 19,
+    "games_detail": [
+      {
+        "match_id": "PA1",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 6,
+        "pf": 5,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA3",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 1,
+        "pf": 10,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA6",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 7,
+        "pf": 12,
+        "pa": 22,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "PA9",
+        "game_number": 1,
+        "stage": "Pool play",
+        "opponent_id": 12,
+        "pf": 13,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G2",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 4,
+        "pf": 2,
+        "pa": 21,
+        "won": false,
+        "close": false,
+        "extended": false
+      },
+      {
+        "match_id": "G13",
+        "game_number": 1,
+        "stage": "Double elimination",
+        "opponent_id": 12,
+        "pf": 10,
+        "pa": 22,
+        "won": false,
+        "close": false,
+        "extended": false
+      }
+    ],
+    "srs": -12.391266567052513,
+    "schedule_strength": 0.2754000996141424,
+    "srs_rank": 13
+  }
+]
